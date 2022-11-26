@@ -150,6 +150,28 @@ restaurantMap
     .set(true, "We are open :)")
     .set(false, "We are closed :(");
 console.log(restaurantMap.get(true));
+// Object to Map conversion
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+// Map from array
+const quiz = new Map([
+    ["q", "What's the best Programming Language?"],
+    [1, "Python"],
+    [2, "JavaScript"],
+    [3, ".NET"],
+    ["correct", 2],
+    [true, "Yes!! Correct Answer"],
+    [false, "Oops.. Try Again"],
+]);
+
+// Quiz Display
+console.log(quiz.get("q"));
+for (const [key, value] of quiz) {
+    if (typeof key === "number") console.log(`${key}. ${value}`);
+}
+// const Answer = Number(prompt("Your Answer?"));
+console.log(Answer);
+console.log(quiz.get(quiz.get("correct") === Answer));
 
 // -------------------------------------------------
 // // CC1

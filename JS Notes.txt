@@ -120,6 +120,7 @@ Add/delete elements:
 ->get(key): Value for corresponding key that was passed. Datatype matters.
 ->has(key): Same as sets.
 ->delete(key): Remove key->value.
+We can populate the map when creating it as well. We need to pass an array of arrays that contains keys and respective values in them as argument to Map(). This is exactly how Object.entries(obj) returns an output therefore making it easy to convert an object to map. We can iterate maps just like arrays using for...of and they return key & values in an array per iteration. We can also use unpacking operator on it to basically revert it back to array structure from before.
 
 -------------------------------------------------------
 Object Oriented Programming
