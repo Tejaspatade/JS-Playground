@@ -1,0 +1,257 @@
+Used to build interactive Web-Pages.
+Browsers have a JS Engine: Chrome - V8 & FireFox - SpiderMonkey.
+Node - Ryan Dahl Developed C++ program that embedded V8.
+JS code can be run - browser, node.
+ECMAScipt -> Specification, JS -> Prog Lang.
+
+------------
+
+Script tag in HTML at end of body tag is best practice, here's why
+-> Browser loads HTML in up-down form so HTML should load b4 JS code.
+-> JS code usually interacts with HTML elements which thus need to be readily rendered.
+
+------------
+
+HTML -> Content/Noun, JS -> Behaviour/Verb, CSS -> Looks/Adjective.
+
+Variables are boxes in which we store stuff. JS variables were declared using var but since ES6 let is used. By default, variables are undefined once declared. They are assigned a type when value is stored in them. Variables shouldnt contain space/hyphen. Use camel notation. They're case-sensitive. Multiple vars can be defined on 1 line but it's good practice to declare 1 var per line.
+
+Constants can be initialized using const whose values can't be changed once assigned.
+
+--------------------------------------------------------
+Data Types
+Data Types specify the type of value that is stored in a variable. 
+JS follows dynamic typing wherein there's no need to manually define datatype for a variable's value. It is determined automatically. This also infers that we can change the type of a variable dynamically when needed.
+-> Primitive/Value:String, Boolean, Number, undefined, null, symbol(ES6), BigInt(ES2020).
+-> Reference:object, array, function.
+
+undefined is a value and a primitive data type-both. This means that a variable that's only been declared will have undefined as its value as well as its datatype.
+
+Objects are the combination of 2 or more key-value pairs. They are dynamic which means that we can always add more values to it. Defined using {} braces & accessed using dot notation(for static selection of key) & bracket notation(for dynamic selection of key).
+
+Array is a DS that stores a list of values following the index format. They can be accessed using their index. Arrays are objects as well with their own properties.
+
+Functions are a block of statements that perform a meaningful task. They're reusable. They can be passed values and return a value as well using return.
+Argument -> Value suplied to a function call.
+Parameter -> Variable in function definition to whom argument is passed.
+
+Note: typeof Null is object which is a bug in JS and isnt fixed for legacy reasons.
+
+--------------
+
+Declaring variables:
+let, const & var can be used.
+let-> reassign, mutate & declare empty variables.
+const-> immutable.
+
+--------------
+
+Operators can be used on variables(operands) to form an operation/expression which then returns a value. This mechanism can be used to implement logic & develop Algorithms.
+->Arithmetic: +, -, _, /, %, \*\*, ++, --
+->Assignment: =, +=, -+, _=, /=, %=
+->Comparison:
+->Relational: >, >=, <, <=  
+->Equality: ===, !==, ==
+->Ternary: ?:
+
+Note: + operator always converts numbers to string types in operations. All other operators do it vice versa.
+Note: == & === both compare for equality. ==(lose equality) checks only for value equality whereas ===(strict equality) looks for data type as well as value equality. Lose equality(==) converts 2nd operand to 1st operand's datatype b4 comparing.
+
+->Logical: &&, ||, !
+
+Note: Logical Operators can be used with non Boolean values. Result of Logical op is not always true/false but depends on operands. Non boolean values are interpreted as Truthy/Falsy by JS Engine. Falsy: false, undefined, NaN, 0, null, ''(empty string). Anything that's not falsy is always truthy. Truthy value is returned from logical ops when compared with false.
+In a chain/curcuit of consecutive ORs, JS returns the very first Truthy value that it finds therefore breaking the so-called circuit. ANDs work exactly opposite of this, meaining, in a chain of ANDs, it returns the first Falsy value it encounters. It revolves aroud the phenomenon that if in a chain of values, even a single one of them is Falsy, the entire expression output is False(in case of ORs its exactly opposite). Use case for AND short curcuiting-
+1.Check whether a function exists, and if it does then call it, else simply ignore the expression.
+Use case for OR short cicuiting-
+2.Set default values if a variable doesn't store a value.
+Note: If all values in chain are True JS will reach end of expr & return last value.
+
+->Bitwise: &, |
+
+--------------------------------------------------------
+Control Structures
+If else is conditional statement that checks for 1/more conditions given and executes different block of code as per condition. Switch case compares a variable with multiple values in each case and executes some stmnts when comparison is true. switch case is kinda outdated.
+
+Loops repeat a code block until given condition is true. 
+-> for loop initialises a variable called the iterator, checks condition, executes code if true, incerements/decrements iterator and checks again. 
+-> while loops are used when we dont know exact how many repetitions are to be done or the number of repetitions is dynamically decided. It simply checks condition and executes code until condition becomes false. 
+-> do...while loop executes code block once regardless of the condition & then checks condition.
+-> for...in loop is used to iterate over objects and stores key in var.
+-> for...of(ES6) is used to iterate over iterables and stores elements in var per iteration. It hides all details of iterator and increments. To get index at each iteration as well, we need to call the entries() method on the object. This will now return an array of the index and item at that index per iteration. for...in can be used for arrays but it stores index in var, not individual array elements.
+
+--------------
+
+'use strict'; 
+It enables strict mode in JS. Forbids us from doing certain things that may result in errors/bugs. Create visible errors when it would have otherwise failed silently.
+
+--------------------------------------------------------
+Functions:
+Functions are user-defined/predefined blocks of code that can be run with just 1 line. They are used to reuse a block of code. They are first defined and then can be run by invoking/calling/running the function using it's function name just like we use a variable name to reuse the value stored in it. Functions are passed variables called as parameters. These variables(arguments) are passed when calling the function and are used by function definition. The variables in function definiton that are passed values from a function call are called as parameters. They can be used only within the function block(that is their scope). Functions also return some data back to where it was called from. This is called as returning a value. Functions in JS are basically a type of value which thus allow us to create & assign them to a variable as well.
+Functions can be defined in 2 ways:
+-> Function Declaration: Define the function anywhere but it can be called even before declaring.
+-> Function Expression: Define a nameless function and store it into a variable that acts as the function name. Can't call before being declared.
+-> Arrow Functions(ES6): Special type of Function Expressions. Uses => operator between parameter list and code block. No need to use function keyword.
+
+--------------------------------------------------------
+Data Structures
+Arrays:
+Array is a DS that stores a list of values following the index format. They can be accessed using their index. Arrays are objects as well with their own properties. It can store any type of data. It is an iterable.
+Add/delete elements:
+->push(element)/pop(): End of array.
+->unshift(element)/shift(): Start of array.
+Note: push() & unshift() return new length of array likewise the other 2 return elemnt deleted.
+->indexOf(element): Return index of existing element & -1 otherwise.
+->includes()(ES6): Returns true for existing element & false otherwise.
+
+--------------
+
+Sets(ES6):
+Collection of unique values, no duplicates. It is an iterable. Creating a set is done by using new operator followed by Set(iterable) & needs an iterable when defining & ignores all duplicates from it. Elements are unordered in a set & thus don't have any index. It has the size property that specifies no. of elements in set(like length for arrays).
+Add/delete elements:
+-> add(element), delete()
+-> has(element): Returns true for existing element & false otherwise.
+
+--------------
+
+Maps(ES6):
+Maps are key->value pairs but unlike objects, the key can be of any datatype. Creating a map is done by using new operator followed by Map(). We can then add key-values to it using the set(key, value).
+Add/delete elements:
+->set(key, value): Returns the update map after adding passed arguments as key->values. Thus, it can be called in a chain to add multiple pairs.
+->get(key): Value for corresponding key that was passed. Datatype matters.
+->has(key): Same as sets.
+->delete(key): Remove key->value.
+
+-------------------------------------------------------
+Object Oriented Programming
+Object is a collection of properties(key:value pairs) and methods(functions as value). It allows us to give a name to each of the values being stored that can be used to access it unlike Arrays where we can access them using only their indices. Functions inside of an object are called as methods. Objects can be used to store similar type of data and manipulations on the data in a single place. Order of properties doesn't matter. 
+
+Objects can also hold functions as properties since they are also a type of value in JS. These functions are called methods. Methods can also be accesssed in the same way.
+
+Accessing Object Properties:
+->Dot operator: Access property value by using the object_name.key syntax. This is followed by parameters in parantheses for methods.
+->Brackets: Access property value by passing in an expression in [] brackets after object_name.
+Note: Accessing non-existent property keys returns undefined. This is followed by parameters in parantheses for methods.
+
+Methods of creating Objects:
+->Factory functions: These are simple functions that are passed arguments which are used to return an object with those arguments as it's values. They basically act like a factory the manufactures objects which have different values. If the key and parameter to function have same name, just the parameter name is sufficient to store that value in the object. The key for any functions can be neglected as well by directly defining the function.
+->Constructor functions: These are functions that take arguments and use the 'this' keyword to define object members and methods. They are usually named in Pascal naming convention. 'this' is a reference to the object currently executing the specific code. When actually creating the new object 'new' keyword is used followed by the Constructor name with arguments passed to it. 'new' creates an empty JS object, sets the 'this' operator to point to this newly created object and returns an object from the constructor function implicitly.
+
+-------------------------------------------------------------
+DOM Manipulation
+Refers to making JS interact with our HTML & CSS code(basically the webpage). 
+
+DOM: Document Object Model
+Structured representation of HTML elements. Updatable so that JS can be used to dynamically update webpage content/styles. DOM is automatically creater when browser page loads and stored in tree structure. Each HTML element is an object of the tree. document Object is the root of this tree & acts as an entry point to the tree. The tree not only includes elements but also content of the elements as child nodes. DOM isn't a part of JS. It belongs to WEB API implemented by all browsers. Alternatives are FETCH.
+
+Methods I'm Learning:
+->document.querySelector(element identifier): Selects an element out of the HTML page referencing the identifier used. Identifier could be element name, class/id name as well.
+Note: Only selects 1st one if there exist more than 1 elements for identifier. To overcome this drawback, use querySelectorAll() instead.
+->document.querySelector(element identifier).addEventListener(eventType, function): Creates an event listener on the selected DOM object. It listens for the event of type passed as argument and when event occurs, calls the function also passed as the argument. This calling of function happens implicitly by JS engine.
+->document.getElementById(id): Selects an element with id passed as an argument. This method is only applicable for id & don't need the # symbol.
+Note: Implicitly called function is also passed an event object as argument containing all properties of the event that has occured.
+
+Properties I'm Learning:
+->style: Modify CSS for the object. It's properties correspond to css styles but follow the camel case notation.
+->textContent: The text that element actually displays.
+->value: Current value in input field.
+->classList: Returns collection of classes of the selected element. We use methods like add, remove, toggle on this property to update class selectors on the DOM object.
+
+Note: Always store variables that determine state of the webpage(so called state vars) in JS code. Don't rely on storing it in the DOM itself.
+
+Most effective way to make dynamic webpages is to create different CSS classes with respective styles and then dynamically update classList for elements. This helps aggregate multiple styles into single class which can then be easily updated using one line of JS.
+
+Keyboard Input events are global and thus to handle them we addeventListener on document obj itself. The type of event is either keydown -> Key Pressed down, keyup -> Key press released, keypress -> Key kept pressed continously.
+
+-----------------------------------------------------------
+JS Theory, Implementation Details
+-> JS Runtime & JS Engine
+JS engine is responsible for running our JS code. It consists of a call stack & a heap. Call stack stores all of the execution contexts used to execute the code. Heap is where all objects related to program are stored.
+
+--------------
+
+-> Compilation vs Interpretation vs JIT Compilation:
+Compiled Languages compile the code into machine code(binary) and store it in an executable file. Interpretation is when code is convrerted to machine code line by line when execution is actually being done. JS used to be interpreted language, but not anymore. Now it's a Just-In-Time Compiled language. This concept refers to code being converted to machine code all at once but this is done just before execution of the code. Note that there's no executable file generated here.
+-- Just-In-Time Compilation in JS:
+JIT Compilation works by first parsing JS code. It checks for errors, groups meaningful blocks of code together and stores it in a DS called Abstract Syntax Tree. This AST eventually gets compiled into machine code when its time to execute the code. The machine code then immediately starts executing in the JS Engine's call stack. Initial compilation of machine code is generated as fast as possible to start execution right away. Then while execution continues, JS Engine uses optimization techniques to optimize & recompile the code while the actual execution is happening as well. This is done in background in some system defined threads inaccessible through code.
+
+--------------
+
+-> JS Runtime (In Browser):
+JS Runtime is like a container/environement within which JS code lives and is executed. It consists of the JS engine, Web APIs like DOM, Fetch API, Timers, etc(these are functionalities provided to JS & don't belong to JS, it accesses these thru global window object) and a callback queue(callback functions ready to be executed). An event loop takes events from callback queue and inserts them into call stack of JS Engine to execute it.
+-> JS Runtime (In Node.js):
+Everything is same except that Web APIs don't exist since they were being provided by the browser. Instead there are C++ bindings and Thread pools.
+
+--------------
+
+-> Execution Context in Call Stacks:
+Execution context is environment within which JS code executes. It stores metadata & necessary info for code to be executed. The Global execution context is generated for Top level code(code that doesn't belong to any function). Theres exactly one global execution context per JS project. Then respective functions get their own execution contexts so that they too can be executed. These singular execution contexts together form the call stack.
+Any EC includes:
+1. Variable environements: declarations, arguments object.
+2. Scope Chain: Scope of variables outside function.
+3. this keyword.
+
+--------------
+
+-> Scope & Scope Chain:
+Define where variable can & can't be accessed from. JS implements lexical scoping. Lexical scoping means scope for variables is controlled by placement of functions & blocks in the code. Scope is space/env in which it was declared.
+Types of Scope -
+1. Global: Accessible anywhere
+2. Function(Local): Only in respective function
+3. Block(ES6): Only let & const defined varaibles.
+Note: If a scope needs to use a variable & doesn't find it in current scope, it searches for it up the scope chain. This process is called Variable Lookup. Copies of variables aren't made, instead they are searched for in scope chain. This doesn't work the other way around meanining, the scope chain only works upwards, not down or even sideways.
+
+--------------
+
+-> Hoisting:
+Makes variables accesssible before they were declared in the code. Code is scanned for variable declarations before being executed in the EC. A new property for each declaration found is created in variable environment object. var declarations get hoisted, but when accessed their value shows as undefined & not the actually defined value. let & const also get hoisted, but aren't accessible in their scope before being initialized. The area from start of its scope to the declaration is called as TDZ-Temporal Dead Zone in which the variable is known to be declared by JS Engine due to hoisting but isn't accessible and throws a ReferenceError. TDZ is ES6.
+
+Hoisting was introduced in JS to use functions before declaring them in techniques such as mutual recursion. But now, it usually gets more in the way of efficient & bug-free code. Thus, using let & const is a workaround the harm caused by Hoisting.
+
+--------------
+
+-> this Keyword:
+Special variable created for every EC(Implying its created for every function that gets called). this is dynamically assigned a value. Assigned value depends on how the function gets called & is assigned the value only once function has been called.
+1. Method of an object: this points to object calling function.
+2. Normal Function: undefined(strict mode)/window object.
+3. Arrow Functions: this doesn't get assigned.
+4. Event Listener: DOM element of the handler.
+
+--------------
+
+-> Primitive Types vs Object(Reference) Types:
+Primitive type variables reside in EC of the call stack whereas objects belong to heap. The primitive as well as reference variable identifiers point to a memory location in the callstack all the same, but the difference is that primitives store their value at this mem loc whereas reference types store a reference address to actual object mem loc from the heap in the mem loc from callstack.
+
+-----------------------------------------------------------
+Array Destructuring:
+Destructuring - Unpacking complex DS like array, object into simple variables.
+We enclose the list of variables into which we want to unpack in [] and then assign it the array. This will unpack the first n elements of the array into variables declared on LHS(here, n is no. of variables declared on LHS). Skip array elements as well by leaving blank between commas on LHS. Useful to swap to variables as well. It makes returning multiple values from a function easy as well. Return an array and then destructure while calling it. We can do nested destructuring for unpacking nested arrays.
+
+We can similarly destructure objects. Replace [] by {} and specify exact property names from the object. The order or count doesn't matter. We can also rename these unpacked variables by specifying a new name after a colon. We can also add default values in case properties don't exist with the equal operator followed by the default value we want. If no default value is provided undefined is returned. It can be used for API calls & retrieve data from backend, etc. Also can be used in place of a long list of confusing parameters for a function. While calling function, pass parameters as an object with all arguments with a key-name. Then in function parameter list specify these key-names in any order in {} which destructures the passed object based on key-names into paramaters that can then be used in function.
+
+--------------
+
+Spread operator(...):
+Used to spread out the values of an array. Similar to Destructuring but it doesn't store them in variables. Used for-
+1. Shallow Copies: Copy array data into a new variable. This doesnt make just a new reference to older array but creates a new array with the same values.
+2. Merge 2 arrays.
+Note: It is usable on all iterables like-arrays, strings, maps, sets. Objects aren't iterables. But it can be used on Objects as well since ES2018.
+
+It outputs multiple values separated by commas, implying it can be used while making arrays and passing arguments for function call.
+
+--------------
+
+Rest operator(...):
+Same as Spread operator but used on LHS of = sign and does exactly opposite of spread operator. Can be used while destructuring to collect all values from the end that aren't assigned variables.
+
+We can also use it to store any arbitrary number of arguments passed into a single array parameter using this array.
+
+--------------
+
+Nullish Coalescing Operator(??)(ES2020):
+This operator treats only null & undefined as Falsy values. Implying '' and 0 aren't Falsy values. This helps using it in checking if a variable exists or not. Usually other methods work but they fail when the variable itself stores 0 or empty string and is clearly defined but the expression outputs False since these 2 values are considered Falsy. This is overcomed using the nullish coalescing operator.
+
+--------------
+
+Optional Chaining Operator(?.)(ES2020):
+It is used to check whether nested objects actually exist before accessing any of it's further properties. Simply trying to access a non-existing property of an obj returns undefined, but if we wanted to access an object from inside object which may/may not exist, it leads to an error. In such a case, the optional chaining operator is used which acceses a property of nested object only if it actually exists.
+
