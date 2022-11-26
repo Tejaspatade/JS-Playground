@@ -119,59 +119,59 @@ const restaurant = {
 //     console.log(`On ${day} we open at ${open} & close at ${close}`);
 // }
 
-// Sets
-const orderSet = new Set([
-    "Risotto",
-    "Pasta",
-    "Pizza",
-    "Risotto",
-    "Pizza",
-    "Spaghetti",
-]);
-console.log(orderSet);
-// Example
-const staff = [
-    "Waiter",
-    "Chef",
-    "Manager",
-    "Waiter",
-    "Waiter",
-    "Chef",
-    "Sous Chef",
-];
-// Check Unique Job positions
-console.log(new Set(staff).size);
-// Maps
-const restaurantMap = new Map();
-restaurantMap
-    .set("name", "Classico Italiano")
-    .set(1, "Venice, Italy")
-    .set(2, "Paris, France")
-    .set(true, "We are open :)")
-    .set(false, "We are closed :(");
-console.log(restaurantMap.get(true));
-// Object to Map conversion
-const hoursMap = new Map(Object.entries(openingHours));
-console.log(hoursMap);
-// Map from array
-const quiz = new Map([
-    ["q", "What's the best Programming Language?"],
-    [1, "Python"],
-    [2, "JavaScript"],
-    [3, ".NET"],
-    ["correct", 2],
-    [true, "Yes!! Correct Answer"],
-    [false, "Oops.. Try Again"],
-]);
+// // Sets
+// const orderSet = new Set([
+//     "Risotto",
+//     "Pasta",
+//     "Pizza",
+//     "Risotto",
+//     "Pizza",
+//     "Spaghetti",
+// ]);
+// console.log(orderSet);
+// // Example
+// const staff = [
+//     "Waiter",
+//     "Chef",
+//     "Manager",
+//     "Waiter",
+//     "Waiter",
+//     "Chef",
+//     "Sous Chef",
+// ];
+// // Check Unique Job positions
+// console.log(new Set(staff).size);
+// // Maps
+// const restaurantMap = new Map();
+// restaurantMap
+//     .set("name", "Classico Italiano")
+//     .set(1, "Venice, Italy")
+//     .set(2, "Paris, France")
+//     .set(true, "We are open :)")
+//     .set(false, "We are closed :(");
+// console.log(restaurantMap.get(true));
+// // Object to Map conversion
+// const hoursMap = new Map(Object.entries(openingHours));
+// console.log(hoursMap);
+// // Map from array
+// const quiz = new Map([
+//     ["q", "What's the best Programming Language?"],
+//     [1, "Python"],
+//     [2, "JavaScript"],
+//     [3, ".NET"],
+//     ["correct", 2],
+//     [true, "Yes!! Correct Answer"],
+//     [false, "Oops.. Try Again"],
+// ]);
 
-// Quiz Display
-console.log(quiz.get("q"));
-for (const [key, value] of quiz) {
-    if (typeof key === "number") console.log(`${key}. ${value}`);
-}
-// const Answer = Number(prompt("Your Answer?"));
-console.log(Answer);
-console.log(quiz.get(quiz.get("correct") === Answer));
+// // Quiz Display
+// console.log(quiz.get("q"));
+// for (const [key, value] of quiz) {
+//     if (typeof key === "number") console.log(`${key}. ${value}`);
+// }
+// // const Answer = Number(prompt("Your Answer?"));
+// console.log(Answer);
+// console.log(quiz.get(quiz.get("correct") === Answer));
 
 // -------------------------------------------------
 // // CC1
@@ -268,3 +268,36 @@ const game = {
 //     scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 // }
 // console.log(scorers);
+
+// CC 3
+const gameEvents = new Map([
+    [17, "⚽ GOAL"],
+    [36, "� Substitution"],
+    [47, "⚽ GOAL"],
+    [61, "� Substitution"],
+    [64, "� Yellow card"],
+    [69, "� Red card"],
+    [70, "� Substitution"],
+    [72, "� Substitution"],
+    [76, "⚽ GOAL"],
+    [80, "⚽ GOAL"],
+    [92, "� Yellow card"],
+]);
+// 1.
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+// 2.
+gameEvents.delete(64);
+console.log(gameEvents);
+
+// 3.
+console.log(
+    `An event occured, on average, every ${90 / gameEvents.size} minutes.`
+);
+
+// 4.
+for (const [time, event] of gameEvents) {
+    const half = time <= 45 ? "[FIRST HALF]" : "[SECOND HALF]";
+    console.log(`${half} ${time}: ${event}`);
+}
