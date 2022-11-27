@@ -256,3 +256,16 @@ This operator treats only null & undefined as Falsy values. Implying '' and 0 ar
 Optional Chaining Operator(?.)(ES2020):
 It is used to check whether nested objects actually exist before accessing any of it's further properties. Simply trying to access a non-existing property of an obj returns undefined, but if we wanted to access an object from inside object which may/may not exist, it leads to an error. In such a case, the optional chaining operator is used which acceses a property of nested object only if it actually exists.
 
+-----------------------------------------------------------
+Strings
+Their individual letters can be accessed using 0 based index just like in arrays. It also has indexOf() & lastIndexOf() methods to get occurence position of passed letter/word in string.
+Note: Strings are immutable thus any method called on a string returns a new substring and doesn't ever modify the actual string as it is a primitive datatype.
+
+Technically, strings are a primitive datatype hence should'nt have any methods like reference datatypes. But JS converts any string to a string object with the same characters upon which the methods actually get called. This process is called boxing.
+- Methods
+1. toLowerCase()
+2. toUpperCase()
+3. trim(): Remove whitespaces from start & end of str
+4. trimStart()ES2019
+5. trimEnd()ES2019
+6. replace()

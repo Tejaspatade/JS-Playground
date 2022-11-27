@@ -1,48 +1,69 @@
 "use strict";
 
 // Data needed for a later exercise
-// const flights =
-//   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+// String Manipulations
+const flights =
+    "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
+//
+const airline = "Lufthansa Airlines";
+const plane = "L404";
+const companyName = airline.slice(0, airline.indexOf(" "));
+console.log(companyName);
+console.log(airline.slice(airline.lastIndexOf(" ") + 1));
+//
+const middleSeatCheck = function (seat) {
+    // B & E are middle seats
+    const row = seat.slice(-1);
+    // if (seat.indexOf("B") !== -1 || seat.indexOf("E") !== -1)
+    if (row === "B" || row === "E")
+        console.log("You have a middle seat.", seat);
+    else console.log("You don't have a middle seat.", seat);
+};
+middleSeatCheck("12D");
+middleSeatCheck("1A");
+middleSeatCheck("2E");
+middleSeatCheck("9B");
+middleSeatCheck("1C");
 
 // Destructuring Arrays
-const openingHours = {
-    thu: {
-        open: 12,
-        close: 22,
-    },
-    fri: {
-        open: 11,
-        close: 23,
-    },
-    sat: {
-        open: 0, // Open 24 hours
-        close: 24,
-    },
-};
+// const openingHours = {
+//     thu: {
+//         open: 12,
+//         close: 22,
+//     },
+//     fri: {
+//         open: 11,
+//         close: 23,
+//     },
+//     sat: {
+//         open: 0, // Open 24 hours
+//         close: 24,
+//     },
+// };
 
-const restaurant = {
-    name: "Classico Italiano",
-    location: "Via Angelo Tavanti 23, Firenze, Italy",
-    categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
-    starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
-    mainMenu: ["Pizza", "Pasta", "Risotto"],
+// const restaurant = {
+//     name: "Classico Italiano",
+//     location: "Via Angelo Tavanti 23, Firenze, Italy",
+//     categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+//     starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
+//     mainMenu: ["Pizza", "Pasta", "Risotto"],
 
-    order(entreeIndex, mainIndex) {
-        return [this.starterMenu[entreeIndex], this.mainMenu[mainIndex]];
-    },
+//     order(entreeIndex, mainIndex) {
+//         return [this.starterMenu[entreeIndex], this.mainMenu[mainIndex]];
+//     },
 
-    openingHours, // ES6 Object Literal Syntax update
+//     openingHours, // ES6 Object Literal Syntax update
 
-    orderPasta(ingredient1, ingredient2, ingredient3) {
-        console.log(
-            `Here's Your Pasta with ${ingredient1}, ${ingredient2} and ${ingredient3}`
-        );
-    },
+//     orderPasta(ingredient1, ingredient2, ingredient3) {
+//         console.log(
+//             `Here's Your Pasta with ${ingredient1}, ${ingredient2} and ${ingredient3}`
+//         );
+//     },
 
-    orderPizza(mainIngredient, ...optionalToppings) {
-        console.log(mainIngredient, optionalToppings);
-    },
-};
+//     orderPizza(mainIngredient, ...optionalToppings) {
+//         console.log(mainIngredient, optionalToppings);
+//     },
+// };
 
 // // const arr = [1, 3, 7];
 // // const [first, second] = arr;
@@ -269,35 +290,35 @@ const game = {
 // }
 // console.log(scorers);
 
-// CC 3
-const gameEvents = new Map([
-    [17, "⚽ GOAL"],
-    [36, "� Substitution"],
-    [47, "⚽ GOAL"],
-    [61, "� Substitution"],
-    [64, "� Yellow card"],
-    [69, "� Red card"],
-    [70, "� Substitution"],
-    [72, "� Substitution"],
-    [76, "⚽ GOAL"],
-    [80, "⚽ GOAL"],
-    [92, "� Yellow card"],
-]);
-// 1.
-const events = [...new Set(gameEvents.values())];
-console.log(events);
+// // CC 3
+// const gameEvents = new Map([
+//     [17, "⚽ GOAL"],
+//     [36, "� Substitution"],
+//     [47, "⚽ GOAL"],
+//     [61, "� Substitution"],
+//     [64, "� Yellow card"],
+//     [69, "� Red card"],
+//     [70, "� Substitution"],
+//     [72, "� Substitution"],
+//     [76, "⚽ GOAL"],
+//     [80, "⚽ GOAL"],
+//     [92, "� Yellow card"],
+// ]);
+// // 1.
+// const events = [...new Set(gameEvents.values())];
+// console.log(events);
 
-// 2.
-gameEvents.delete(64);
-console.log(gameEvents);
+// // 2.
+// gameEvents.delete(64);
+// console.log(gameEvents);
 
-// 3.
-console.log(
-    `An event occured, on average, every ${90 / gameEvents.size} minutes.`
-);
+// // 3.
+// console.log(
+//     `An event occured, on average, every ${90 / gameEvents.size} minutes.`
+// );
 
-// 4.
-for (const [time, event] of gameEvents) {
-    const half = time <= 45 ? "[FIRST HALF]" : "[SECOND HALF]";
-    console.log(`${half} ${time}: ${event}`);
-}
+// // 4.
+// for (const [time, event] of gameEvents) {
+//     const half = time <= 45 ? "[FIRST HALF]" : "[SECOND HALF]";
+//     console.log(`${half} ${time}: ${event}`);
+// }
