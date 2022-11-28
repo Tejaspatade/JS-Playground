@@ -19,11 +19,24 @@ const middleSeatCheck = function (seat) {
         console.log("You have a middle seat.", seat);
     else console.log("You don't have a middle seat.", seat);
 };
-middleSeatCheck("12D");
-middleSeatCheck("1A");
-middleSeatCheck("2E");
-middleSeatCheck("9B");
-middleSeatCheck("1C");
+// middleSeatCheck("12D");
+// middleSeatCheck("1A");
+// middleSeatCheck("2E");
+// middleSeatCheck("9B");
+// middleSeatCheck("1C");
+
+// Split & Join
+function capitalize(string, breakpoint) {
+    const names = string.split(breakpoint);
+    const capitalized = [];
+    for (const name of names) {
+        // capitalized.push(name[0].toUpperCase() + name.slice(1));
+        capitalized.push(name.replace(name[0], name[0].toUpperCase()));
+    }
+    console.log(capitalized.join(" "));
+}
+
+capitalize("ann smith john jodi", " ");
 
 // Destructuring Arrays
 // const openingHours = {

@@ -268,4 +268,11 @@ Technically, strings are a primitive datatype hence should'nt have any methods l
 3. trim(): Remove whitespaces from start & end of str
 4. trimStart()ES2019
 5. trimEnd()ES2019
-6. replace()
+6. replace(searchStr, replaceStr): Replace 1st occurence of passed argument with 2nd argument
+7. replaceAll(searchStr, replaceStr)ES2021: Replaces all occurences.
+8. includes(searchStr)
+9. startsWith(searchStr)
+10. endsWith(searchStr)
+11. split(breakpoint): Splits str into array of strs at every occurence of specified breakpoint. 
+12. join(concatStr): Concatenates an array of strs with passed str in-between each element
+13. slice(startIndex): Returns string from index specified.
