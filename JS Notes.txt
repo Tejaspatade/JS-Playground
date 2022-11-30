@@ -276,3 +276,5 @@ Technically, strings are a primitive datatype hence should'nt have any methods l
 11. split(breakpoint): Splits str into array of strs at every occurence of specified breakpoint. 
 12. join(concatStr): Concatenates an array of strs with passed str in-between each element
 13. slice(startIndex): Returns string from index specified.
+14. padStart()/padEnd(length, padding): Returns string with padding so that string matches specified length
+15. repeat(repetitions)

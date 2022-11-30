@@ -4,39 +4,51 @@
 // String Manipulations
 const flights =
     "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
-//
-const airline = "Lufthansa Airlines";
-const plane = "L404";
-const companyName = airline.slice(0, airline.indexOf(" "));
-console.log(companyName);
-console.log(airline.slice(airline.lastIndexOf(" ") + 1));
-//
-const middleSeatCheck = function (seat) {
-    // B & E are middle seats
-    const row = seat.slice(-1);
-    // if (seat.indexOf("B") !== -1 || seat.indexOf("E") !== -1)
-    if (row === "B" || row === "E")
-        console.log("You have a middle seat.", seat);
-    else console.log("You don't have a middle seat.", seat);
-};
+
+// //
+// const airline = "Lufthansa Airlines";
+// const plane = "L404";
+// const companyName = airline.slice(0, airline.indexOf(" "));
+// console.log(companyName);
+// console.log(airline.slice(airline.lastIndexOf(" ") + 1));
+// //
+// const middleSeatCheck = function (seat) {
+//     // B & E are middle seats
+//     const row = seat.slice(-1);
+//     // if (seat.indexOf("B") !== -1 || seat.indexOf("E") !== -1)
+//     if (row === "B" || row === "E")
+//         console.log("You have a middle seat.", seat);
+//     else console.log("You don't have a middle seat.", seat);
+// };
 // middleSeatCheck("12D");
 // middleSeatCheck("1A");
 // middleSeatCheck("2E");
 // middleSeatCheck("9B");
 // middleSeatCheck("1C");
 
-// Split & Join
-function capitalize(string, breakpoint) {
-    const names = string.split(breakpoint);
-    const capitalized = [];
-    for (const name of names) {
-        // capitalized.push(name[0].toUpperCase() + name.slice(1));
-        capitalized.push(name.replace(name[0], name[0].toUpperCase()));
-    }
-    console.log(capitalized.join(" "));
-}
+// // Split & Join
+// function capitalize(string, breakpoint) {
+//     const names = string.split(breakpoint);
+//     const capitalized = [];
+//     for (const name of names) {
+//         // capitalized.push(name[0].toUpperCase() + name.slice(1));
+//         capitalized.push(name.replace(name[0], name[0].toUpperCase()));
+//     }
+//     console.log(capitalized.join(" "));
+// }
 
-capitalize("ann smith john jodi", " ");
+// capitalize("ann smith john jodi", " ");
+
+// // Padding Strings
+// const msg = "Please Go To Gate 4";
+// console.log(msg.padStart(30, "-").padEnd(35, "+"));
+// // Mask Aadhar Card Digits
+// const maskAadhar = function (aadhar) {
+//     const str = aadhar + "";
+//     return str.slice(-4).padStart(str.length, "*");
+// };
+
+// console.log(maskAadhar(639170903240));
 
 // Destructuring Arrays
 // const openingHours = {
@@ -209,46 +221,46 @@ capitalize("ann smith john jodi", " ");
 
 // -------------------------------------------------
 // // CC1
-const game = {
-    team1: "Bayern Munich",
-    team2: "Borrussia Dortmund",
-    players: [
-        [
-            "Neuer",
-            "Pavard",
-            "Martinez",
-            "Alaba",
-            "Davies",
-            "Kimmich",
-            "Goretzka",
-            "Coman",
-            "Muller",
-            "Gnarby",
-            "Lewandowski",
-        ],
-        [
-            "Burki",
-            "Schulz",
-            "Hummels",
-            "Akanji",
-            "Hakimi",
-            "Weigl",
-            "Witsel",
-            "Hazard",
-            "Brandt",
-            "Sancho",
-            "Gotze",
-        ],
-    ],
-    score: "4:0",
-    scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
-    date: "Nov 9th, 2037",
-    odds: {
-        team1: 1.33,
-        x: 3.25,
-        team2: 6.5,
-    },
-};
+// const game = {
+//     team1: "Bayern Munich",
+//     team2: "Borrussia Dortmund",
+//     players: [
+//         [
+//             "Neuer",
+//             "Pavard",
+//             "Martinez",
+//             "Alaba",
+//             "Davies",
+//             "Kimmich",
+//             "Goretzka",
+//             "Coman",
+//             "Muller",
+//             "Gnarby",
+//             "Lewandowski",
+//         ],
+//         [
+//             "Burki",
+//             "Schulz",
+//             "Hummels",
+//             "Akanji",
+//             "Hakimi",
+//             "Weigl",
+//             "Witsel",
+//             "Hazard",
+//             "Brandt",
+//             "Sancho",
+//             "Gotze",
+//         ],
+//     ],
+//     score: "4:0",
+//     scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+//     date: "Nov 9th, 2037",
+//     odds: {
+//         team1: 1.33,
+//         x: 3.25,
+//         team2: 6.5,
+//     },
+// };
 // // 1.
 // const [players1, players2] = game.players;
 // console.log(players1, players2);
@@ -334,4 +346,28 @@ const game = {
 // for (const [time, event] of gameEvents) {
 //     const half = time <= 45 ? "[FIRST HALF]" : "[SECOND HALF]";
 //     console.log(`${half} ${time}: ${event}`);
+// }
+
+// // Coding Challenge 4
+// document.body.append(document.createElement("textarea"));
+// document.body.append(document.createElement("button"));
+// // const text = document.querySelector("textarea").value;
+// const text = `underscore_case
+// first_name
+// Some_Variable
+//  calculate_AGE
+// delayed_departure`;
+// const words = text.split("\n");
+// // console.log(words.join("\n"));
+// const output = [];
+// for (const word of words) {
+//     let [one, two] = word.trim().toLowerCase().split("_");
+//     const camelCase = `${one}${two.replace(two[0], two[0].toUpperCase())}`;
+//     output.push(camelCase);
+// }
+// console.log(output);
+// let count = 0;
+// for (const word of output) {
+//     count++;
+//     console.log(`${word.padEnd(20, " ")}${"✅".repeat(count)}`);
 // }
