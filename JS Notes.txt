@@ -86,11 +86,20 @@ It enables strict mode in JS. Forbids us from doing certain things that may resu
 
 --------------------------------------------------------
 Functions:
-Functions are user-defined/predefined blocks of code that can be run with just 1 line. They are used to reuse a block of code. They are first defined and then can be run by invoking/calling/running the function using it's function name just like we use a variable name to reuse the value stored in it. Functions are passed variables called as parameters. These variables(arguments) are passed when calling the function and are used by function definition. The variables in function definiton that are passed values from a function call are called as parameters. They can be used only within the function block(that is their scope). Functions also return some data back to where it was called from. This is called as returning a value. Functions in JS are basically a type of value which thus allow us to create & assign them to a variable as well.
+Functions are user-defined/predefined blocks of code that can be run with just 1 line. They are used to reuse a block of code. They are first defined and then can be run by invoking/calling/running the function using it's function name just like we use a variable name to reuse the value stored in it. Functions are passed variables called as parameters. These variables(arguments) are passed when calling the function and are used by function definition. The variables in function definiton that are passed values from a function call are called as parameters. They can be used only within the function block(that is their scope). Functions also return some data back to where it was called from. This is called as returning a value. Functions in JS are basically a type of object implying they are values which thus allow us to create & assign them to a variable as well.
 Functions can be defined in 2 ways:
 -> Function Declaration: Define the function anywhere but it can be called even before declaring.
 -> Function Expression: Define a nameless function and store it into a variable that acts as the function name. Can't call before being declared.
 -> Arrow Functions(ES6): Special type of Function Expressions. Uses => operator between parameter list and code block. No need to use function keyword.
+
+Since ES6, we can specify default parameter values by specifying them in parameter list with equal to operator. To skip an in-between parameter and set it to it's default value, you can pass undefined(which is just as if we didn't pass it a value).
+
+We don't pass by reference in JS. We just simply pass a reference into the function as a value for reference datatypes & primitive datatypes are simple passed by value.
+
+Types of Functions:
+1. First-Order Functions: Normal functions. All functions are values. (Feature of JS)
+2. Higher-Order Functions: Functions that return a function/ are passed one as an argument. This is possible due to First-Order Functions existing in the first place. A function passed as an argument is called as callback func(it gets called back by Higher-Order func).
+These 2 types are present to implement abstraction in JS. By hiding some details in first-order functions, we can think about our problems on a higher & more abstract level with higher-order functions.
 
 --------------------------------------------------------
 Data Structures
