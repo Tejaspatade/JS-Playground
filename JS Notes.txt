@@ -101,6 +101,14 @@ Types of Functions:
 2. Higher-Order Functions: Functions that return a function/ are passed one as an argument. This is possible due to First-Order Functions existing in the first place. A function passed as an argument is called as callback func(it gets called back by Higher-Order func).
 These 2 types are present to implement abstraction in JS. By hiding some details in first-order functions, we can think about our problems on a higher & more abstract level with higher-order functions.
 
+Call, Apply & Bind methods:
+These functions are used to explicitly set the this pointer when calling a function. This is useful when multiple objects want to use the same function and dynamically use their own property values using this pointer. However, in a simple function call, this points to undefined. These 3 methods belong to the functions since they themselves are also objects in JS. To explicitly specify JS engine that this should point to specific method, we use these methods:
+1. function.call(object, ...arguments): Takes object for this followed by arguments.
+2. function.apply(object, argumentArray): Takes arguments in an array.
+3. function.bind(object, optionalParams): It does same but doesnt immediately call the function, rather returns one with this pointing to object passed. We can also specify arguments that would be permenantly bind when calling new returned function. This phenomenon is called partial application where we already partially set the argument values for anytime a function call happens. It's use case is in binding the this keyword to an object when passing the function to an event listener. This can't be done otherwise using the call/apply bcuz they call the function instantly.
+
+Note: All objects trying to call the same function with this pointing to them should have same property names.
+
 --------------------------------------------------------
 Data Structures
 Arrays:
@@ -156,7 +164,7 @@ Structured representation of HTML elements. Updatable so that JS can be used to 
 Methods I'm Learning:
 ->document.querySelector(element identifier): Selects an element out of the HTML page referencing the identifier used. Identifier could be element name, class/id name as well.
 Note: Only selects 1st one if there exist more than 1 elements for identifier. To overcome this drawback, use querySelectorAll() instead.
-->document.querySelector(element identifier).addEventListener(eventType, function): Creates an event listener on the selected DOM object. It listens for the event of type passed as argument and when event occurs, calls the function also passed as the argument. This calling of function happens implicitly by JS engine.
+->document.querySelector(element identifier).addEventListener(eventType, function): Creates an event listener on the selected DOM object. It listens for the event of type passed as argument and when event occurs, calls the function also passed as the argument. This calling of function happens implicitly by JS engine. The this keyword points to object on which eventListener is attached dynamically.
 ->document.getElementById(id): Selects an element with id passed as an argument. This method is only applicable for id & don't need the # symbol.
 Note: Implicitly called function is also passed an event object as argument containing all properties of the event that has occured.
 
@@ -283,7 +291,7 @@ Technically, strings are a primitive datatype hence should'nt have any methods l
 9. startsWith(searchStr)
 10. endsWith(searchStr)
 11. split(breakpoint): Splits str into array of strs at every occurence of specified breakpoint. 
-12. join(concatStr): Concatenates an array of strs with passed str in-between each element
+12. join(concatStr): Concatenates an array of strs with passed str in-between each element. This is technically not a str method but an array method.
 13. slice(startIndex): Returns string from index specified.
 14. padStart()/padEnd(length, padding): Returns string with padding so that string matches specified length
 15. repeat(repetitions)
