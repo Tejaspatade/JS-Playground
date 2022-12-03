@@ -77,3 +77,20 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 let arr = ["a", "b", "c", "d", "e"];
 console.log(arr.slice(2));
+
+let arr2 = ["j", "i", "h", "g", "f"];
+console.log(arr2.reverse());
+
+const letters = arr.concat(arr2);
+console.log(letters);
+
+// ForEach
+for (const transaction of movements) {
+    if (transaction > 0) console.log(`${transaction} Deposited`);
+    else console.log(`${Math.abs(transaction)} Withdrawn`);
+}
+
+movements.forEach(function (transaction, index) {
+    if (transaction > 0) console.log(`${index + 1}: ${transaction} Deposited`);
+    else console.log(`${index + 1}: ${Math.abs(transaction)} Withdrawn`);
+});

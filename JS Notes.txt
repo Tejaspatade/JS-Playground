@@ -127,6 +127,11 @@ Add/delete elements:
 Note: push() & unshift() return new length of array likewise the other 2 return elemnt deleted.
 ->indexOf(element): Return index of existing element & -1 otherwise.
 ->includes()(ES6): Returns true for existing element & false otherwise.
+->slice(start, end): Returns Sliced Array.
+->splice(start, deleteCount): Returns Sliced Array but mutates the original array as well. Usually used to remove range of elements from our array.
+->reverse(): Reverses the elements for the array. Returns a copy as well
+->concat(array2): Concat 2 arrays and return resultant arr.
+->forEach(function(currentEl, i, arr){}): Iterates the array, at each iteration calls the callback function passed as argument and passes current array element as an argument to this callback function. continue & break dont work here.
 
 --------------
 
