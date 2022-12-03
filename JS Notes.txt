@@ -132,6 +132,9 @@ Note: push() & unshift() return new length of array likewise the other 2 return 
 ->reverse(): Reverses the elements for the array. Returns a copy as well
 ->concat(array2): Concat 2 arrays and return resultant arr.
 ->forEach(function(currentEl, i, arr){}): Iterates the array, at each iteration calls the callback function passed as argument and passes current array element as an argument to this callback function. continue & break dont work here.
+->map():
+->filter():
+->reduce():
 
 --------------
 
@@ -180,10 +183,12 @@ Note: Only selects 1st one if there exist more than 1 elements for identifier. T
 ->document.querySelector(element identifier).addEventListener(eventType, function): Creates an event listener on the selected DOM object. It listens for the event of type passed as argument and when event occurs, calls the function also passed as the argument. This calling of function happens implicitly by JS engine. The this keyword points to object on which eventListener is attached dynamically.
 ->document.getElementById(id): Selects an element with id passed as an argument. This method is only applicable for id & don't need the # symbol.
 Note: Implicitly called function is also passed an event object as argument containing all properties of the event that has occured.
+->element.insertAdjacentHTML(location, htmlString): Appends htmlString code at specified location of element in HTML file. 
 
 Properties I'm Learning:
 ->style: Modify CSS for the object. It's properties correspond to css styles but follow the camel case notation.
 ->textContent: The text that element actually displays.
+->innerHTML: The entire element HTML including tags, classes, id and content as well.
 ->value: Current value in input field.
 ->classList: Returns collection of classes of the selected element. We use methods like add, remove, toggle on this property to update class selectors on the DOM object.
 
