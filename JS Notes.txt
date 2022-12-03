@@ -109,6 +109,14 @@ These functions are used to explicitly set the this pointer when calling a funct
 
 Note: All objects trying to call the same function with this pointing to them should have same property names.
 
+Immediately Invoke Function Expressions:
+Used to invoke a function immediately after defining it and never using it again. This can be done by defining the function without a name, enclosing it in () thereby tricking JS into thinkinc its an expression and then following it by another () to call it there itself. These are like single use disposable functions needed just once.
+
+Closures:
+Any function always has access to variable environment of the execution context in which it was created(even after the execution context is removed from call stack). This VE is called closure. It is accessible exactly as it was when the function was created. Whenever a function tries to access a variable from a VE that no longer exists as an Excution Context in call stack, JS engine searches for this variable name in closure before looking in the scope chain of this function. Closures have higher priority over the scope chain as well. This variable environment that no longer exists is said to be closed over VE.
+
+Closure gives a function access to variables of its parent function, even after the parent function has returned. The function keeps a reference to the outer scope which preserves the scope chain throughout time. It doesn't lose connection to variables that were present in the context where the function was created. Closures are implicitly created. We can't directly access it.
+
 --------------------------------------------------------
 Data Structures
 Arrays:

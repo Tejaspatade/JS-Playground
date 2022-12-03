@@ -123,3 +123,32 @@ const poll = {
 document
     .querySelector(".poll")
     .addEventListener("click", poll.registerNewAnswer.bind(poll));
+
+// IIFE
+(function () {
+    console.log("This won't run ever again.");
+})();
+
+// Closures
+const secureBooking = function () {
+    let passengerCount = 0;
+
+    return function () {
+        passengerCount++;
+        console.log(`${passengerCount} Passengers.`);
+    };
+};
+const booker = secureBooking();
+booker();
+booker();
+booker();
+console.dir(booker);
+
+// CC #2
+(function () {
+    const header = document.querySelector("h1");
+    header.style.color = "red";
+    document.querySelector("body").addEventListener("click", function () {
+        header.style.color = "blue";
+    });
+})();
