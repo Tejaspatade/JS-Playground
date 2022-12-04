@@ -75,7 +75,7 @@ const displayMovements = function (transactions) {
             <div class="movements__type movements__type--${txType}">
                         ${i + 1} ${txType}
             </div>
-            <div class="movements__value">${transaction}</div>
+            <div class="movements__value">${transaction}$</div>
         </div>
         `;
 
@@ -90,6 +90,25 @@ function calcBalance(txactions) {
     const balance = txactions.reduce((accum, current) => accum + current, 0);
     labelBalance.textContent = balance;
 }
+
+// Calculating Summary Insights
+function calcInsightSummary(txactions) {
+    const deposits = txactions
+        .filter((txaction) => txaction > 0)
+        .reduce((accum, current) => accum + current, 0);
+    labelSumIn.textContent = `${deposits}💲`;
+    const deductions = txactions
+        .filter((txaction) => txaction < 0)
+        .reduce((accum, current) => accum + current, 0);
+    labelSumOut.textContent = `${Math.abs(deductions)}💲`;
+    const interest = txactions
+        .filter((txaction) => txaction > 0)
+        .map((deposit) => (deposit * 1.2) / 100)
+        .filter((current) => current >= 1)
+        .reduce((accum, current) => accum + current, 0);
+    labelSumInterest.textContent = `${interest}💲`;
+}
+calcInsightSummary(account1.movements);
 
 // Generating Usernames
 function generateUsernames(accs) {
@@ -159,39 +178,54 @@ const currencies = new Map([
 
 // checkDogs(julia, kate);
 
-// Map Function
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-const euroToUSD = 1.1;
-const usdMovements = movements.map((txaction) => txaction * euroToUSD);
-console.log(usdMovements);
+// // Map Function
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const euroToUSD = 1.1;
+// const usdMovements = movements.map((txaction) => txaction * euroToUSD);
+// console.log(usdMovements);
 
-// Filter Function
-const withdrawals = movements.filter((txaction) => txaction < 0);
-console.log(withdrawals);
+// // Filter Function
+// const withdrawals = movements.filter((txaction) => txaction < 0);
+// console.log(withdrawals);
 
-// Reduce Method
-const balance = movements.reduce(function (accumulator, txaction) {
-    return accumulator + txaction;
-});
+// // Reduce Method
+// const balance = movements.reduce(function (accumulator, txaction) {
+//     return accumulator + txaction;
+// });
 
-const maxTxaction = movements.reduce(function (accum, txaction) {
-    return accum < txaction ? txaction : accum;
-}, movements[0]);
-console.log(maxTxaction);
+// const maxTxaction = movements.reduce(function (accum, txaction) {
+//     return accum < txaction ? txaction : accum;
+// }, movements[0]);
+// console.log(maxTxaction);
 
-// CC #2
-function calcAverageHumanAge(ages) {
-    // 1.
-    const ageInHumanYrs = ages.map((age) => {
-        if (age <= 2) return 2 * age;
-        else return 16 + age * 4;
-    });
-    // 2.
-    const adultDogs = ageInHumanYrs.filter((age) => age >= 18);
-    // 3.
-    const average =
-        adultDogs.reduce((accum, age) => accum + age, 0) / adultDogs.length;
-    return average;
-}
-console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
-console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+// // CC #2
+// function calcAverageHumanAge(ages) {
+//     // 1.
+//     const ageInHumanYrs = ages.map((age) => {
+//         if (age <= 2) return 2 * age;
+//         else return 16 + age * 4;
+//     });
+//     // 2.
+//     const adultDogs = ageInHumanYrs.filter((age) => age >= 18);
+//     // 3.
+//     const average =
+//         adultDogs.reduce((accum, age) => accum + age, 0) / adultDogs.length;
+//     return average;
+// }
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+// console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+
+// // CC #3
+// function calcAverageHumanAge(ages) {
+//     // 1.
+//     const average = ages
+//         .map((age) => {
+//             if (age <= 2) return 2 * age;
+//             else return 16 + age * 4;
+//         })
+//         .filter((age) => age >= 18)
+//         .reduce((accum, age, i, array) => accum + age / array.length, 0);
+//     return average;
+// }
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+// console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
