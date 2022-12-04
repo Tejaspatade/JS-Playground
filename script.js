@@ -85,6 +85,27 @@ const displayMovements = function (transactions) {
 };
 displayMovements(account1.movements);
 
+// Calculating Balance
+function calcBalance(txactions) {
+    const balance = txactions.reduce((accum, current) => accum + current, 0);
+    labelBalance.textContent = balance;
+}
+
+// Generating Usernames
+function generateUsernames(accs) {
+    accs.forEach(function (account) {
+        const username = account.owner
+            .toLowerCase()
+            .split(" ")
+            .map((name) => name[0])
+            .join("");
+        account.userName = username;
+    });
+}
+generateUsernames(accounts);
+// console.log(account1);
+
+calcBalance(account1.movements);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // Arrays Deep Dive
@@ -94,8 +115,6 @@ const currencies = new Map([
     ["EUR", "Euro"],
     ["GBP", "Pound sterling"],
 ]);
-
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -119,23 +138,60 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //     else console.log(`${index + 1}: ${Math.abs(transaction)} Withdrawn`);
 // });
 
-// CC #1
-let julia = [3, 5, 2, 12, 17];
-let kate = [4, 1, 15, 8, 3];
+// // CC #1
+// let julia = [3, 5, 2, 12, 17];
+// let kate = [4, 1, 15, 8, 3];
 
-function checkDogs(dogsJulia, dogsKate) {
+// function checkDogs(dogsJulia, dogsKate) {
+//     // 1.
+//     const copyJulia = dogsJulia.slice(1, 3);
+//     // 2.
+//     const dogs = copyJulia.concat(dogsKate);
+//     // 3.
+//     dogs.forEach(function (dog, i) {
+//         dog >= 3
+//             ? console.log(
+//                   `Dog Number ${i + 1} is an adult and is ${dog} years old.`
+//               )
+//             : console.log(`Dog Number ${i + 1} is still a puppy`);
+//     });
+// }
+
+// checkDogs(julia, kate);
+
+// Map Function
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const euroToUSD = 1.1;
+const usdMovements = movements.map((txaction) => txaction * euroToUSD);
+console.log(usdMovements);
+
+// Filter Function
+const withdrawals = movements.filter((txaction) => txaction < 0);
+console.log(withdrawals);
+
+// Reduce Method
+const balance = movements.reduce(function (accumulator, txaction) {
+    return accumulator + txaction;
+});
+
+const maxTxaction = movements.reduce(function (accum, txaction) {
+    return accum < txaction ? txaction : accum;
+}, movements[0]);
+console.log(maxTxaction);
+
+// CC #2
+function calcAverageHumanAge(ages) {
     // 1.
-    const copyJulia = dogsJulia.slice(1, 3);
-    // 2.
-    const dogs = copyJulia.concat(dogsKate);
-    // 3.
-    dogs.forEach(function (dog, i) {
-        dog >= 3
-            ? console.log(
-                  `Dog Number ${i + 1} is an adult and is ${dog} years old.`
-              )
-            : console.log(`Dog Number ${i + 1} is still a puppy`);
+    const ageInHumanYrs = ages.map((age) => {
+        if (age <= 2) return 2 * age;
+        else return 16 + age * 4;
     });
+    // 2.
+    const adultDogs = ageInHumanYrs.filter((age) => age >= 18);
+    // 3.
+    const average =
+        adultDogs.reduce((accum, age) => accum + age, 0) / adultDogs.length;
+    return average;
 }
-
-checkDogs(julia, kate);
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));

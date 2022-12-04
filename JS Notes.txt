@@ -96,10 +96,14 @@ Since ES6, we can specify default parameter values by specifying them in paramet
 
 We don't pass by reference in JS. We just simply pass a reference into the function as a value for reference datatypes & primitive datatypes are simple passed by value.
 
+--------------
+
 Types of Functions:
 1. First-Order Functions: Normal functions. All functions are values. (Feature of JS)
 2. Higher-Order Functions: Functions that return a function/ are passed one as an argument. This is possible due to First-Order Functions existing in the first place. A function passed as an argument is called as callback func(it gets called back by Higher-Order func).
 These 2 types are present to implement abstraction in JS. By hiding some details in first-order functions, we can think about our problems on a higher & more abstract level with higher-order functions.
+
+--------------
 
 Call, Apply & Bind methods:
 These functions are used to explicitly set the this pointer when calling a function. This is useful when multiple objects want to use the same function and dynamically use their own property values using this pointer. However, in a simple function call, this points to undefined. These 3 methods belong to the functions since they themselves are also objects in JS. To explicitly specify JS engine that this should point to specific method, we use these methods:
@@ -109,8 +113,12 @@ These functions are used to explicitly set the this pointer when calling a funct
 
 Note: All objects trying to call the same function with this pointing to them should have same property names.
 
-Immediately Invoke Function Expressions:
+--------------
+
+Immediately Invoked Function Expressions:
 Used to invoke a function immediately after defining it and never using it again. This can be done by defining the function without a name, enclosing it in () thereby tricking JS into thinkinc its an expression and then following it by another () to call it there itself. These are like single use disposable functions needed just once.
+
+--------------
 
 Closures:
 Any function always has access to variable environment of the execution context in which it was created(even after the execution context is removed from call stack). This VE is called closure. It is accessible exactly as it was when the function was created. Whenever a function tries to access a variable from a VE that no longer exists as an Excution Context in call stack, JS engine searches for this variable name in closure before looking in the scope chain of this function. Closures have higher priority over the scope chain as well. This variable environment that no longer exists is said to be closed over VE.
@@ -132,9 +140,9 @@ Note: push() & unshift() return new length of array likewise the other 2 return 
 ->reverse(): Reverses the elements for the array. Returns a copy as well
 ->concat(array2): Concat 2 arrays and return resultant arr.
 ->forEach(function(currentEl, i, arr){}): Iterates the array, at each iteration calls the callback function passed as argument and passes current array element as an argument to this callback function. continue & break dont work here.
-->map():
-->filter():
-->reduce():
+->map(callbackFunc(currentEl, index, array){}): Loops over the array, returns a brand new array with each position having a value resultant after applying passed callback function on corresponding elements of original array. Callback function recieves current element as argument per iteration & should return computed value for new array.
+->filter(callback((currentEl, index, array){}): Filter out Array elements based on condition in callback function passsed as argument. Callback function should return a boolean. If it returns true, currentEl is added into output arr or else not.
+->reduce(callback(accumulator, currentEl, i, array){}, accuInit): Condense the array into one single value and return it. Accucumulator is the value that is processed on each iteration of array element. The 2nd argument specifies initial value for our accumulator variable.
 
 --------------
 
