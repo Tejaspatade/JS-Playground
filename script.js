@@ -61,8 +61,11 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
+// Global Variables
+let currentAccount;
+
 // Displaying Transactions
-const displayMovements = function (transactions) {
+const displayTransactions = function (transactions) {
     // Remove any Existing irrelevant transactions
     containerMovements.innerHTML = "";
     transactions.forEach(function (transaction, i) {
@@ -83,32 +86,40 @@ const displayMovements = function (transactions) {
         containerMovements.insertAdjacentHTML("afterbegin", markup);
     });
 };
-displayMovements(account1.movements);
 
 // Calculating Balance
-function calcBalance(txactions) {
-    const balance = txactions.reduce((accum, current) => accum + current, 0);
-    labelBalance.textContent = balance;
+function calcBalance(account) {
+    account.balance = account.movements.reduce(
+        (accum, current) => accum + current,
+        0
+    );
+    labelBalance.textContent = `$${account.balance}`;
 }
 
 // Calculating Summary Insights
-function calcInsightSummary(txactions) {
-    const deposits = txactions
+function calcInsightSummary(acc) {
+    const deposits = acc.movements
         .filter((txaction) => txaction > 0)
         .reduce((accum, current) => accum + current, 0);
     labelSumIn.textContent = `${deposits}💲`;
-    const deductions = txactions
+    const deductions = acc.movements
         .filter((txaction) => txaction < 0)
         .reduce((accum, current) => accum + current, 0);
     labelSumOut.textContent = `${Math.abs(deductions)}💲`;
-    const interest = txactions
+    const interest = acc.movements
         .filter((txaction) => txaction > 0)
-        .map((deposit) => (deposit * 1.2) / 100)
+        .map((deposit) => (deposit * acc.interestRate) / 100)
         .filter((current) => current >= 1)
         .reduce((accum, current) => accum + current, 0);
     labelSumInterest.textContent = `${interest}💲`;
 }
-calcInsightSummary(account1.movements);
+
+// Call All 3 UI methods
+function updateUI() {
+    calcBalance(currentAccount);
+    calcInsightSummary(currentAccount);
+    displayTransactions(currentAccount.movements);
+}
 
 // Generating Usernames
 function generateUsernames(accs) {
@@ -124,16 +135,76 @@ function generateUsernames(accs) {
 generateUsernames(accounts);
 // console.log(account1);
 
-calcBalance(account1.movements);
+// Event Listeners
+// Login Functionality
+btnLogin.addEventListener("click", function (event) {
+    // Prevent Form from Submitting
+    event.preventDefault();
+
+    // Get Account for corresponding username
+    currentAccount = accounts.find(
+        (account) => account.userName === inputLoginUsername.value
+    );
+
+    // Check if username & pin are valid
+    if (currentAccount?.pin === Number(inputLoginPin.value)) {
+        console.log("Login");
+        // Display UI, Welcome Msg, Balance, Summary(Insights), Transactions
+        containerApp.style.opacity = 100;
+        labelWelcome.textContent = `Welcome, ${
+            currentAccount.owner.split(" ")[0]
+        }`;
+
+        // Clear input Fields
+        inputLoginUsername.value = "";
+        inputLoginPin.value = "";
+        inputLoginPin.blur();
+
+        // Call utility functions
+        updateUI();
+    }
+});
+
+// Transfer Funds Functionality
+btnTransfer.addEventListener("click", function (event) {
+    // Prevent Form from Submitting
+    event.preventDefault();
+
+    // Taking inputs
+    const amount = Number(inputTransferAmount.value);
+    const recipient = accounts.find(
+        (acc) => acc.userName === inputTransferTo.value
+    );
+    console.log(amount, recipient);
+
+    // Validate Transfer amount
+    if (
+        amount > 0 &&
+        recipient &&
+        amount <= currentAccount.balance &&
+        recipient?.userName !== currentAccount.userName
+    ) {
+        currentAccount.movements.push(-1 * amount);
+        recipient.movements.push(amount);
+        updateUI();
+        console.log("Txaction Successfull.");
+    }
+    // Clear input Fields
+    inputTransferAmount.value = "";
+    inputTransferTo.value = "";
+    inputTransferAmount.blur();
+});
+
+// -------------------------------------------------------------------------------------------
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // Arrays Deep Dive
 
-const currencies = new Map([
-    ["USD", "United States dollar"],
-    ["EUR", "Euro"],
-    ["GBP", "Pound sterling"],
-]);
+// const currencies = new Map([
+//     ["USD", "United States dollar"],
+//     ["EUR", "Euro"],
+//     ["GBP", "Pound sterling"],
+// ]);
 
 /////////////////////////////////////////////////
 
@@ -229,3 +300,7 @@ const currencies = new Map([
 // }
 // console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 // console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+
+// // Find method
+// const currentAccount = accounts.find((account) => account.userName === "tp");
+// console.log(accounts, currentAccount);

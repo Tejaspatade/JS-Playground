@@ -143,6 +143,7 @@ Note: push() & unshift() return new length of array likewise the other 2 return 
 ->map(callbackFunc(currentEl, index, array){}): Loops over the array, returns a brand new array with each position having a value resultant after applying passed callback function on corresponding elements of original array. Callback function recieves current element as argument per iteration & should return computed value for new array.
 ->filter(callback((currentEl, index, array){}): Filter out Array elements based on condition in callback function passsed as argument. Callback function should return a boolean. If it returns true, currentEl is added into output arr or else not.
 ->reduce(callback(accumulator, currentEl, i, array){}, accuInit): Condense the array into one single value and return it. Accucumulator is the value that is processed on each iteration of array element. The 2nd argument specifies initial value for our accumulator variable.
+-> find(callback((currentEl, index, array){}): Returns first value for which callback function returns true. Just like filter except the fact that it only return 1st value satisfying condition.
 
 --------------
 
@@ -191,7 +192,9 @@ Note: Only selects 1st one if there exist more than 1 elements for identifier. T
 ->document.querySelector(element identifier).addEventListener(eventType, function): Creates an event listener on the selected DOM object. It listens for the event of type passed as argument and when event occurs, calls the function also passed as the argument. This calling of function happens implicitly by JS engine. The this keyword points to object on which eventListener is attached dynamically.
 ->document.getElementById(id): Selects an element with id passed as an argument. This method is only applicable for id & don't need the # symbol.
 Note: Implicitly called function is also passed an event object as argument containing all properties of the event that has occured.
-->element.insertAdjacentHTML(location, htmlString): Appends htmlString code at specified location of element in HTML file. 
+->element.insertAdjacentHTML(location, htmlString): Appends htmlString code at specified location of element in HTML file.
+->event.preventDefault(): Prevent Form from submitting.
+Note: HTML Input elements in a form by default generate a click event on the corresponding submit button when you hit enter when the input field is selected.
 
 Properties I'm Learning:
 ->style: Modify CSS for the object. It's properties correspond to css styles but follow the camel case notation.
