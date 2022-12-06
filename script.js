@@ -148,7 +148,7 @@ btnLogin.addEventListener("click", function (event) {
 
     // Check if username & pin are valid
     if (currentAccount?.pin === Number(inputLoginPin.value)) {
-        console.log("Login");
+        console.log("Login Successful");
         // Display UI, Welcome Msg, Balance, Summary(Insights), Transactions
         containerApp.style.opacity = 100;
         labelWelcome.textContent = `Welcome, ${
@@ -195,6 +195,29 @@ btnTransfer.addEventListener("click", function (event) {
     inputTransferAmount.blur();
 });
 
+// Request Loan Functionality
+btnLoan.addEventListener("click", function (event) {
+    // Prevent Form from Submitting
+    event.preventDefault();
+
+    // Check For Loan Request validity
+    const loanAmount = Number(inputLoanAmount.value);
+    if (
+        loanAmount > 0 &&
+        currentAccount.movements.some(
+            (txaction) => txaction >= loanAmount * 0.1
+        )
+    ) {
+        // Deposit Approved Loan Amount
+        console.log("Loan Sanctioned. :)");
+        currentAccount.movements.push(loanAmount);
+        // Update UI
+        updateUI();
+    }
+    inputLoanAmount.value = "";
+    inputLoanAmount.blur();
+});
+
 // Close Account Functionality
 btnClose.addEventListener("click", function (event) {
     // Prevent Form from Submitting
@@ -214,6 +237,7 @@ btnClose.addEventListener("click", function (event) {
         );
         // Remove Account from accounts array
         accounts.splice(index, 1);
+        console.log("Account Closed Succesdfully.");
     }
     // Clear input Fields
     inputCloseUsername.value = "";

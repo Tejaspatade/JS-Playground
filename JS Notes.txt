@@ -145,6 +145,8 @@ Note: push() & unshift() return new length of array likewise the other 2 return 
 ->reduce(callback(accumulator, currentEl, i, array){}, accuInit): Condense the array into one single value and return it. Accucumulator is the value that is processed on each iteration of array element. The 2nd argument specifies initial value for our accumulator variable.
 -> find(callback((currentEl, index, array){})(ES6): Returns first value for which callback function returns true. Just like filter except the fact that it only return 1st value satisfying condition.
 -> findIndex(callback((currentEl, index, array){})(ES6): Returns index of first value for which callback function returns true. Just like filter except the fact that it only return 1st value satisfying condition.
+-> some(callback((currentEl, index, array){}): Loops thru array elements & calls callback function that checks for a condition and returns a boolean. some returns true if any element returns true on condition from callback.
+-> every(): Same as some but returns true only if callback returns true on all elements.
 
 --------------
 
