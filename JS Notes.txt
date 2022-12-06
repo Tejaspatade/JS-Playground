@@ -143,7 +143,8 @@ Note: push() & unshift() return new length of array likewise the other 2 return 
 ->map(callbackFunc(currentEl, index, array){}): Loops over the array, returns a brand new array with each position having a value resultant after applying passed callback function on corresponding elements of original array. Callback function recieves current element as argument per iteration & should return computed value for new array.
 ->filter(callback((currentEl, index, array){}): Filter out Array elements based on condition in callback function passsed as argument. Callback function should return a boolean. If it returns true, currentEl is added into output arr or else not.
 ->reduce(callback(accumulator, currentEl, i, array){}, accuInit): Condense the array into one single value and return it. Accucumulator is the value that is processed on each iteration of array element. The 2nd argument specifies initial value for our accumulator variable.
--> find(callback((currentEl, index, array){}): Returns first value for which callback function returns true. Just like filter except the fact that it only return 1st value satisfying condition.
+-> find(callback((currentEl, index, array){})(ES6): Returns first value for which callback function returns true. Just like filter except the fact that it only return 1st value satisfying condition.
+-> findIndex(callback((currentEl, index, array){})(ES6): Returns index of first value for which callback function returns true. Just like filter except the fact that it only return 1st value satisfying condition.
 
 --------------
 

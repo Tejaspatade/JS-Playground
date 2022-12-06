@@ -195,6 +195,32 @@ btnTransfer.addEventListener("click", function (event) {
     inputTransferAmount.blur();
 });
 
+// Close Account Functionality
+btnClose.addEventListener("click", function (event) {
+    // Prevent Form from Submitting
+    event.preventDefault();
+
+    // Check Valid Credentials
+    if (
+        inputCloseUsername.value === currentAccount.userName &&
+        Number(inputClosePin.value) === currentAccount.pin
+    ) {
+        // Hide UI
+        containerApp.style.opacity = 0;
+
+        // Calculate index
+        const index = accounts.findIndex(
+            (acc) => acc.userName === currentAccount.userName
+        );
+        // Remove Account from accounts array
+        accounts.splice(index, 1);
+    }
+    // Clear input Fields
+    inputCloseUsername.value = "";
+    inputClosePin.value = "";
+    inputClosePin.blur();
+});
+
 // -------------------------------------------------------------------------------------------
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
