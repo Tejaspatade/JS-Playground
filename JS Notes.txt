@@ -146,7 +146,12 @@ Note: push() & unshift() return new length of array likewise the other 2 return 
 -> find(callback((currentEl, index, array){})(ES6): Returns first value for which callback function returns true. Just like filter except the fact that it only return 1st value satisfying condition.
 -> findIndex(callback((currentEl, index, array){})(ES6): Returns index of first value for which callback function returns true. Just like filter except the fact that it only return 1st value satisfying condition.
 -> some(callback((currentEl, index, array){}): Loops thru array elements & calls callback function that checks for a condition and returns a boolean. some returns true if any element returns true on condition from callback.
--> every(): Same as some but returns true only if callback returns true on all elements.
+-> every(callback((currentEl, index, array){}): Same as some but returns true only if callback returns true on all elements.
+-> flat(depth)(ES2019): Unpack nested array elements and return them all in one single continous array.
+-> flatMap(callback())(ES2019): Same as Combining map() & flat().
+-> sort(callbackFunction(current, next){}): Sorts original array elements. By default sorts based on type conversion to strings. Meaining it converts array elements to stringd & then sorts them alphabetically as if they were strings. It swaps current and next at any iteration if callback returns value greater than 0 and doesnt swap if it returns lesser than 0.
+-> fill(value, start, end): Used to fill empty arrays that were created using new Array(size). Fills with the value and can take optional start and end index parameters. Can also fill in normal arrays where it replaces existing elements.
+-> Array.from(iterator, callback(current, i){})(ES6): Create an array from iterator passed in and call callback on each element of iterator.
 
 --------------
 

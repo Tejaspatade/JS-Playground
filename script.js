@@ -63,12 +63,19 @@ const inputClosePin = document.querySelector(".form__input--pin");
 
 // Global Variables
 let currentAccount;
+let sorted = false;
 
 // Displaying Transactions
-const displayTransactions = function (transactions) {
+const displayTransactions = function (transactions, sort = false) {
     // Remove any Existing irrelevant transactions
     containerMovements.innerHTML = "";
-    transactions.forEach(function (transaction, i) {
+
+    // Sorted or No
+    const txSorted = sort
+        ? transactions.slice().sort((a, b) => a - b)
+        : transactions;
+
+    txSorted.forEach(function (transaction, i) {
         // Determine Type of current transaction
         const txType = transaction > 0 ? "deposit" : "withdrawal";
 
@@ -245,6 +252,14 @@ btnClose.addEventListener("click", function (event) {
     inputClosePin.blur();
 });
 
+// Sort Transactions
+btnSort.addEventListener("click", function (event) {
+    // Prevent Form from Submitting
+    event.preventDefault();
+    displayTransactions(currentAccount.movements, !sorted);
+    sorted = !sorted;
+});
+
 // -------------------------------------------------------------------------------------------
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -354,3 +369,14 @@ btnClose.addEventListener("click", function (event) {
 // // Find method
 // const currentAccount = accounts.find((account) => account.userName === "tp");
 // console.log(accounts, currentAccount);
+
+// sort
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const sorted = movements.sort((a, b) => {
+//     // Swap
+//     if (a > b) return 1;
+//     // no Swap
+//     if (a < b) return -1;
+// });
+movements.sort((a, b) => a - b);
+console.log(movements);
