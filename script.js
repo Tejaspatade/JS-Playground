@@ -3,29 +3,35 @@
 ///////////////////////////////////////
 // Modal window
 
+// Selecting all DOM objects
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
-const btnCloseModal = document.querySelector(".btn--close-modal");
-const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
+const showModalBtns = document.querySelectorAll(".btn--close-modal");
+const closeModalBtn = document.querySelector(".btn--show-modal");
 
-const openModal = function () {
-    modal.classList.remove("hidden");
-    overlay.classList.remove("hidden");
-};
+// console.log(showModalBtn);
+// Iterate All 3 show-modal buttons and add event listeners for clicks
+for (let i = 0; i < showModalBtns.length; i++) {
+    showModalBtns[i].addEventListener("click", function () {
+        modal.classList.remove("hidden");
+        overlay.classList.remove("hidden");
+    });
+}
 
-const closeModal = function () {
+// Hide The Modal
+const hideModal = function () {
     modal.classList.add("hidden");
     overlay.classList.add("hidden");
 };
 
-for (let i = 0; i < btnsOpenModal.length; i++)
-    btnsOpenModal[i].addEventListener("click", openModal);
-
-btnCloseModal.addEventListener("click", closeModal);
-overlay.addEventListener("click", closeModal);
-
-document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-        closeModal();
+// Hide modal when close-modal is clicked
+closeModalBtn.addEventListener("click", hideModal);
+// Hide modal when overlay is clicked
+overlay.addEventListener("click", hideModal);
+// Listen for Esc Key press
+document.addEventListener("keydown", function (event) {
+    console.log(event.key);
+    if (event.key === "Escape" && !modal.classList.contains("hidden")) {
+        hideModal();
     }
 });
