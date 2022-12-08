@@ -231,6 +231,12 @@ These objects follow Inheritance thus a child can access all the methods & prope
 
 EventTarget is the parent of Node & Window object types. It's an abstract type simple there for its children to inherit event listening functionalities.
 
+-> document.documentElement selects entire html content.
+-> element.getElementsByTagName('tag'): Returns a HTMLCollection with elements of the type specified. This HTMLCOllection is dynamically updated.
+
+Creating DOM elements in JS:
+-> document.createElement('tagname'): Creates a new DOM object which doesn't exist on webpage but only in JS.
+
 -----------------------------------------------------------
 JS Theory, Implementation Details
 -> JS Runtime & JS Engine
