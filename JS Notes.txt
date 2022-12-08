@@ -219,6 +219,18 @@ Most effective way to make dynamic webpages is to create different CSS classes w
 
 Keyboard Input events are global and thus to handle them we addeventListener on document obj itself. The type of event is either keydown -> Key Pressed down, keyup -> Key press released, keypress -> Key kept pressed continously.
 
+--------------
+
+DOM is an interface between our JavaScript code & the HTML files that are rendered onto the browser. It is complex API that contains methods & properties to interact with the DOM Tree. DOM Tree nodes are objects of different types based on which the underlying methods & properties differ as well.
+All nodes in the tree are objects of type Node. Node in turn has some child types:
+-> Element: Element tag. It has a subtype called HTMLElement that has a subtype for every single HTML tag.
+-> Text: Text inside any element.
+-> Comment: Comments from HTML doc.
+-> Document:
+These objects follow Inheritance thus a child can access all the methods & properties from their ancestors.
+
+EventTarget is the parent of Node & Window object types. It's an abstract type simple there for its children to inherit event listening functionalities.
+
 -----------------------------------------------------------
 JS Theory, Implementation Details
 -> JS Runtime & JS Engine
@@ -353,4 +365,10 @@ Functions:
 
 -----------------------------------------------------------
 Date & Time
+We can create dates using Date() class constructor with new keyword. Date objects have several methods to retrieve certain values for the date it stores. 
+Methods:
+-> obj.toISOString(): Returns in Internation standard for date representation.
+-> obj.getTime(): Returns timestamp(Time elapsed since 1 Jan 1970) for date. 
+-> Date.now(): Timestamp at current time.
 
+Any Sort of operations done with dates like subtraction addition convert the dates to timestamps in miliseconds implicitly by JS engine as part of type coercion.

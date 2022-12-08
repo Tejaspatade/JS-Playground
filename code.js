@@ -832,3 +832,153 @@ console.dir(booker);
         header.style.color = "blue";
     });
 })();
+
+// Arrays Deep Dive
+
+// const currencies = new Map([
+//     ["USD", "United States dollar"],
+//     ["EUR", "Euro"],
+//     ["GBP", "Pound sterling"],
+// ]);
+
+/////////////////////////////////////////////////
+
+// let arr = ["a", "b", "c", "d", "e"];
+// console.log(arr.slice(2));
+
+// let arr2 = ["j", "i", "h", "g", "f"];
+// console.log(arr2.reverse());
+
+// const letters = arr.concat(arr2);
+// console.log(letters);
+
+// // ForEach
+// for (const transaction of movements) {
+//     if (transaction > 0) console.log(`${transaction} Deposited`);
+//     else console.log(`${Math.abs(transaction)} Withdrawn`);
+// }
+
+// movements.forEach(function (transaction, index) {
+//     if (transaction > 0) console.log(`${index + 1}: ${transaction} Deposited`);
+//     else console.log(`${index + 1}: ${Math.abs(transaction)} Withdrawn`);
+// });
+
+// // CC #1
+// let julia = [3, 5, 2, 12, 17];
+// let kate = [4, 1, 15, 8, 3];
+
+// function checkDogs(dogsJulia, dogsKate) {
+//     // 1.
+//     const copyJulia = dogsJulia.slice(1, 3);
+//     // 2.
+//     const dogs = copyJulia.concat(dogsKate);
+//     // 3.
+//     dogs.forEach(function (dog, i) {
+//         dog >= 3
+//             ? console.log(
+//                   `Dog Number ${i + 1} is an adult and is ${dog} years old.`
+//               )
+//             : console.log(`Dog Number ${i + 1} is still a puppy`);
+//     });
+// }
+
+// checkDogs(julia, kate);
+
+// // Map Function
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const euroToUSD = 1.1;
+// const usdMovements = movements.map((txaction) => txaction * euroToUSD);
+// console.log(usdMovements);
+
+// // Filter Function
+// const withdrawals = movements.filter((txaction) => txaction < 0);
+// console.log(withdrawals);
+
+// // Reduce Method
+// const balance = movements.reduce(function (accumulator, txaction) {
+//     return accumulator + txaction;
+// });
+
+// const maxTxaction = movements.reduce(function (accum, txaction) {
+//     return accum < txaction ? txaction : accum;
+// }, movements[0]);
+// console.log(maxTxaction);
+
+// // CC #2
+// function calcAverageHumanAge(ages) {
+//     // 1.
+//     const ageInHumanYrs = ages.map((age) => {
+//         if (age <= 2) return 2 * age;
+//         else return 16 + age * 4;
+//     });
+//     // 2.
+//     const adultDogs = ageInHumanYrs.filter((age) => age >= 18);
+//     // 3.
+//     const average =
+//         adultDogs.reduce((accum, age) => accum + age, 0) / adultDogs.length;
+//     return average;
+// }
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+// console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+
+// // CC #3
+// function calcAverageHumanAge(ages) {
+//     // 1.
+//     const average = ages
+//         .map((age) => {
+//             if (age <= 2) return 2 * age;
+//             else return 16 + age * 4;
+//         })
+//         .filter((age) => age >= 18)
+//         .reduce((accum, age, i, array) => accum + age / array.length, 0);
+//     return average;
+// }
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+// console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+
+// // Find method
+// const currentAccount = accounts.find((account) => account.userName === "tp");
+// console.log(accounts, currentAccount);
+
+// // sort
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// // const sorted = movements.sort((a, b) => {
+// //     // Swap
+// //     if (a > b) return 1;
+// //     // no Swap
+// //     if (a < b) return -1;
+// // });
+// movements.sort((a, b) => a - b);
+// console.log(movements);
+
+// -------------------------------------------------------------------
+// Numbers Dates Currencies
+
+console.log(3 === 3.0);
+// Buggy Behaviour due to JS being unable to correctly store fractions in base2 system.
+console.log(0.1 + 0.2);
+
+// Convert Strings to Numbers
+console.log(+"20");
+
+// Random Value Function
+const randomInt = (min, max) =>
+    Math.trunc(Math.random() * (max - min) + 1) + min;
+
+// Date & time
+
+// const now = new Date();
+// console.log(now);
+// console.log(new Date(account1.movementsDates[0]));
+// console.log(new Date(2002, 10, 2, 12, 12, 12));
+// console.log(new Date(0));
+// console.log(new Date(3 * 24 * 60 * 60 * 1000));
+
+// Dates
+const future = new Date(2032, 10, 2);
+console.log(future);
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getFullYear());
+console.log(future.getTime());
+console.log(future.toISOString());
