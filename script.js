@@ -7,9 +7,22 @@
 // Data
 const account1 = {
     owner: "Tejas Patade",
-    movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+    movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
     interestRate: 1.2, // %
     pin: 1111,
+
+    movementsDates: [
+        "2019-11-18T21:31:17.178Z",
+        "2019-12-23T07:42:02.383Z",
+        "2020-01-28T09:15:04.904Z",
+        "2020-04-01T10:17:24.185Z",
+        "2020-05-08T14:11:59.604Z",
+        "2020-05-27T17:01:17.194Z",
+        "2020-07-11T23:36:17.929Z",
+        "2020-07-12T10:51:36.790Z",
+    ],
+    currency: "EUR",
+    locale: "pt-PT", // de-DE
 };
 
 const account2 = {
@@ -17,6 +30,19 @@ const account2 = {
     movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
     interestRate: 1.5,
     pin: 2222,
+
+    movementsDates: [
+        "2019-11-01T13:15:33.035Z",
+        "2019-11-30T09:48:16.867Z",
+        "2019-12-25T06:04:23.907Z",
+        "2020-01-25T14:18:46.235Z",
+        "2020-02-05T16:33:06.386Z",
+        "2020-04-10T14:43:26.374Z",
+        "2020-06-25T18:49:59.371Z",
+        "2020-07-26T12:01:20.894Z",
+    ],
+    currency: "USD",
+    locale: "en-US",
 };
 
 const account3 = {
@@ -32,6 +58,48 @@ const account4 = {
     interestRate: 1,
     pin: 4444,
 };
+
+// DIFFERENT DATA! Contains movement dates, currency and locale
+
+// const account5 = {
+//     owner: "Jonas Schmedtmann",
+//     movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
+//     interestRate: 1.2, // %
+//     pin: 1111,
+
+//     movementsDates: [
+//         "2019-11-18T21:31:17.178Z",
+//         "2019-12-23T07:42:02.383Z",
+//         "2020-01-28T09:15:04.904Z",
+//         "2020-04-01T10:17:24.185Z",
+//         "2020-05-08T14:11:59.604Z",
+//         "2020-05-27T17:01:17.194Z",
+//         "2020-07-11T23:36:17.929Z",
+//         "2020-07-12T10:51:36.790Z",
+//     ],
+//     currency: "EUR",
+//     locale: "pt-PT", // de-DE
+// };
+
+// const account6 = {
+//     owner: "Jessica Davis",
+//     movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+//     interestRate: 1.5,
+//     pin: 2222,
+
+//     movementsDates: [
+//         "2019-11-01T13:15:33.035Z",
+//         "2019-11-30T09:48:16.867Z",
+//         "2019-12-25T06:04:23.907Z",
+//         "2020-01-25T14:18:46.235Z",
+//         "2020-02-05T16:33:06.386Z",
+//         "2020-04-10T14:43:26.374Z",
+//         "2020-06-25T18:49:59.371Z",
+//         "2020-07-26T12:01:20.894Z",
+//     ],
+//     currency: "USD",
+//     locale: "en-US",
+// };
 
 const accounts = [account1, account2, account3, account4];
 
@@ -85,7 +153,7 @@ const displayTransactions = function (transactions, sort = false) {
             <div class="movements__type movements__type--${txType}">
                         ${i + 1} ${txType}
             </div>
-            <div class="movements__value">${transaction}$</div>
+            <div class="movements__value">${transaction.toFixed(2)}$</div>
         </div>
         `;
 
@@ -100,7 +168,7 @@ function calcBalance(account) {
         (accum, current) => accum + current,
         0
     );
-    labelBalance.textContent = `$${account.balance}`;
+    labelBalance.textContent = `$${account.balance.toFixed(2)}`;
 }
 
 // Calculating Summary Insights
@@ -108,17 +176,17 @@ function calcInsightSummary(acc) {
     const deposits = acc.movements
         .filter((txaction) => txaction > 0)
         .reduce((accum, current) => accum + current, 0);
-    labelSumIn.textContent = `${deposits}💲`;
+    labelSumIn.textContent = `${deposits.toFixed(2)}💲`;
     const deductions = acc.movements
         .filter((txaction) => txaction < 0)
         .reduce((accum, current) => accum + current, 0);
-    labelSumOut.textContent = `${Math.abs(deductions)}💲`;
+    labelSumOut.textContent = `${Math.abs(deductions).toFixed(2)}💲`;
     const interest = acc.movements
         .filter((txaction) => txaction > 0)
         .map((deposit) => (deposit * acc.interestRate) / 100)
         .filter((current) => current >= 1)
         .reduce((accum, current) => accum + current, 0);
-    labelSumInterest.textContent = `${interest}💲`;
+    labelSumInterest.textContent = `${interest.toFixed(2)}💲`;
 }
 
 // Call All 3 UI methods
@@ -208,7 +276,7 @@ btnLoan.addEventListener("click", function (event) {
     event.preventDefault();
 
     // Check For Loan Request validity
-    const loanAmount = Number(inputLoanAmount.value);
+    const loanAmount = Math.floor(inputLoanAmount.value);
     if (
         loanAmount > 0 &&
         currentAccount.movements.some(
@@ -370,13 +438,27 @@ btnSort.addEventListener("click", function (event) {
 // const currentAccount = accounts.find((account) => account.userName === "tp");
 // console.log(accounts, currentAccount);
 
-// sort
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-// const sorted = movements.sort((a, b) => {
-//     // Swap
-//     if (a > b) return 1;
-//     // no Swap
-//     if (a < b) return -1;
-// });
-movements.sort((a, b) => a - b);
-console.log(movements);
+// // sort
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// // const sorted = movements.sort((a, b) => {
+// //     // Swap
+// //     if (a > b) return 1;
+// //     // no Swap
+// //     if (a < b) return -1;
+// // });
+// movements.sort((a, b) => a - b);
+// console.log(movements);
+
+// -------------------------------------------------------------------
+// Numbers Dates Currencies
+
+console.log(3 === 3.0);
+// Buggy Behaviour due to JS being unable to correctly store fractions in base2 system.
+console.log(0.1 + 0.2);
+
+// Convert Strings to Numbers
+console.log(+"20");
+
+// Random Value Function
+const randomInt = (min, max) =>
+    Math.trunc(Math.random() * (max - min) + 1) + min;

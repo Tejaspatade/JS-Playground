@@ -37,6 +37,8 @@ Parameter -> Variable in function definition to whom argument is passed.
 
 Note: typeof Null is object which is a bug in JS and isnt fixed for legacy reasons.
 
+BigInt(ES2020): We can store 2^53 - 1 numbers safely in numbers datatype. Any number after that is unsafe to use due to inconsistent outputs. We can convert a number to BigINt type by suffixing it with n.
+
 --------------
 
 Declaring variables:
@@ -332,3 +334,23 @@ Technically, strings are a primitive datatype hence should'nt have any methods l
 13. slice(startIndex): Returns string from index specified.
 14. padStart()/padEnd(length, padding): Returns string with padding so that string matches specified length
 15. repeat(repetitions)
+
+-----------------------------------------------------------
+Numbers
+Numbers are always internally stored in decimals as floating point numbers. They are stored as 64 bit in base 2 format. JS has Buggy Behaviour due to engine being unable to correctly store fractions in base2 system.
+
+Functions:
+-> Number.parseInt(string): Extract number from string. String needs to start with the number.
+-> Number.parseFloat(string): Same but for decimal nos.
+-> Number,isFinite(value): Check if its a finite number.
+-> Math.max(): Maximum value from range of values/iterator. It can also do type coercion if needed.
+-> Math.random(): Randome Number every time between 0 & 1.
+-> Math.trunc(): Remove decimal part of number.
+-> Math.round(): Round up to closest integer.
+-> Math.ceil(): Always Rounds up.
+-> Math.floor(): Always rounds down. Works for negative nos as well.
+-> num.toFixed(decimals): Returns string rounded to a fixed decimal points specified.
+
+-----------------------------------------------------------
+Date & Time
+
