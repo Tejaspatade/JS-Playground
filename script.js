@@ -36,4 +36,43 @@ const cookieMsg = document.createElement("span");
 cookieMsg.classList.add("cookie-message");
 cookieMsg.innerHTML =
     "We use cookies to analyse who visits our site.<button class='btn btn--close-cookie'>Got it!</button>";
-header.prepend(cookieMsg);
+header.before(cookieMsg);
+cookieMsg.style.backgroundColor = "#37383d";
+
+// Close Cookie Msg
+document
+    .querySelector(".btn--close-cookie")
+    .addEventListener("click", function () {
+        cookieMsg.remove();
+    });
+
+// Smooth Scrolling
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.getElementById("section--1");
+btnScrollTo.addEventListener("click", (event) => {
+    // Scroll To (Old School Way) 👴🏽
+    // Co-ordinates of section1
+    // const s1Coords = section1.getBoundingClientRect();
+    // console.log(s1Coords);
+    // window.scrollTo({
+    //     left: s1Coords.left + window.pageXOffset,
+    //     top: s1Coords.top + window.pageYOffset,
+    //     behavior: "smooth",
+    // });
+
+    // Smooth Scroll (Modern Way) 👦🏽
+    section1.scrollIntoView({ behavior: "smooth" });
+});
+
+//
+
+// -------------------------------------------------------------------------------------
+// Coords for the button clicked
+// console.log(event.target.getBoundingClientRect());
+// Scroll Distance
+// console.log("X/Y", window.pageXOffset, window.pageYOffset);
+// ViewPort Height Width
+// console.log(
+//     document.documentElement.clientWidth,
+//     document.documentElement.clientHeight
+// );

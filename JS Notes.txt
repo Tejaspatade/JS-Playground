@@ -236,6 +236,20 @@ EventTarget is the parent of Node & Window object types. It's an abstract type s
 
 Creating DOM elements in JS:
 -> document.createElement('tagname'): Creates a new DOM object which doesn't exist on webpage but only in JS.
+-> element.before(element): Adds an element as sibling before. after() does the opposite.
+-> element.append(element): Adds an element as child at end. prepend() does the opposite.
+-> getComputedStyle(element): Returns Styles for the element from css files or from any sources.
+-> element.getBoundingClientRect(): Returns DOMRect object that contains all data about the coordinates about the positioning of element.
+-> window.pageXOffset: Scroll Offset from start of page. Same for YOffset as well.
+-> document.documentElement.clientWidth/Height: Width & Height of current viewport.
+
+--------------
+
+Old way of handling events was by storing the callback function on the oneventtype property of element object. We can also remove event listeners when not needed using the removeEventListener() function. Events happen regardless of the matter that we listen for them and handle them or not.
+Types of Events:
+-> click: Clicked by cursor.
+-> mouseenter: Cursor Hovers over the element.
+Events aren't generated on the target element but instead on the root of the element. This is called as the creation phase of the event.This event now traverses down the DOM tree to target element node. Upon reaching the target elem, the target phase of the event begins. Here, it can be handled. After handling an event, the event traverses back up to the root through each of the target element's parent node in the so called bubbling phase. This is as if the event happened on all of it's parrent elements and each of it's parents can handle this same event as well during the bubbling phase. This traversal of events is called as Event Propagation.
 
 -----------------------------------------------------------
 JS Theory, Implementation Details
