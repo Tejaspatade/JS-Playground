@@ -229,8 +229,6 @@ All nodes in the tree are objects of type Node. Node in turn has some child type
 -> Document:
 These objects follow Inheritance thus a child can access all the methods & properties from their ancestors.
 
-EventTarget is the parent of Node & Window object types. It's an abstract type simple there for its children to inherit event listening functionalities.
-
 -> document.documentElement selects entire html content.
 -> element.getElementsByTagName('tag'): Returns a HTMLCollection with elements of the type specified. This HTMLCOllection is dynamically updated.
 
@@ -245,11 +243,38 @@ Creating DOM elements in JS:
 
 --------------
 
+Events:
+EventTarget is the parent of Node & Window object types. It's an abstract type simple there for its children to inherit event listening functionalities.
 Old way of handling events was by storing the callback function on the oneventtype property of element object. We can also remove event listeners when not needed using the removeEventListener() function. Events happen regardless of the matter that we listen for them and handle them or not.
 Types of Events:
 -> click: Clicked by cursor.
 -> mouseenter: Cursor Hovers over the element.
-Events aren't generated on the target element but instead on the root of the element. This is called as the creation phase of the event.This event now traverses down the DOM tree to target element node. Upon reaching the target elem, the target phase of the event begins. Here, it can be handled. After handling an event, the event traverses back up to the root through each of the target element's parent node in the so called bubbling phase. This is as if the event happened on all of it's parrent elements and each of it's parents can handle this same event as well during the bubbling phase. This traversal of events is called as Event Propagation.
+
+Events aren't generated on the target element but instead on the root of the element. This is called as the capture phase of the event.This event now traverses down the DOM tree to target element node. Upon reaching the target elem, the target phase of the event begins. Here, it can be handled. After handling an event, the event traverses back up to the root through each of the target element's parent node in the so called bubbling phase. This is as if the event happened on all of it's parrent elements and each of it's parents can handle this same event as well during the bubbling phase. This traversal of events is called as Event Propagation. The target element on which the event happens always remains the same, but this event propagates to and from the target elem during the creation & bubbling phases. This is what allows us to handle this same event in its parents as well.
+-> event.target: Stores target element. Doesn't change no matter which of the elements is handling the same event.
+-> event.currentTarget: Stores the element currently handling this event. Changes to elem handling event during bubbling phase.
+-> event.stopPropagation(): Stops Event Propagation from ever happening.
+Note: addEventListener() by default handles event in the bubbling phase only. Thus, even if the even propagates from root to target during capture phase, it ignored even if one of the target's parent have handler for this event. To change this functionality so that events can be handled in capture phase as well, pass in true as 3rd argument to the function.
+
+Event Delegation:
+Handling the same event that may happen on one of several sibling elements in their parent element during bubbling phase is called as event delegation. They can be used to handle events on elems that are dyanamically inserted and that don't exist by default on the webpage.
+1. Add Event Listener to Common Parent Element
+2. Determine Element that generated the event.
+3. Check if it's the target we want to handle or not.
+
+--------------
+
+DOM Traversing:
+Traversing thru the DOM and selecting one element based on another elem. Used to select elements relative to some other elem. Or when the DOM Tree structure is dynamic & unknonwn.
+Down:
+->childnodes: Direct children nodes including comments etc.
+->children: Direct children elements only.
+Up:
+->parentNode
+->parentElement
+->closest(): Returns the first (starting at element) inclusive ancestor that matches selectors, and null otherwise.
+Sideways:
+->leftSibling
 
 -----------------------------------------------------------
 JS Theory, Implementation Details
