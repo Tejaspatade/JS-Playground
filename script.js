@@ -8,8 +8,11 @@ const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 const btnScrollTo = document.querySelector(".btn--scroll-to");
 const section1 = document.getElementById("section--1");
 const header = document.querySelector(".header");
+const tabBtn = document.querySelectorAll(".operations__tab");
+const tabContent = document.querySelectorAll(".operations__content");
+const tabsContainer = document.querySelector(".operations__tab-container");
 
-// ------------- Modal window
+// ------------- Modal window --------------------------------------------------------------
 const openModal = function () {
     modal.classList.remove("hidden");
     overlay.classList.remove("hidden");
@@ -32,7 +35,7 @@ document.addEventListener("keydown", function (e) {
     }
 });
 
-// ------------- Cookie Element Creation
+// --------------------- Cookie Element Creation -----------------------------------------------
 const cookieMsg = document.createElement("span");
 cookieMsg.classList.add("cookie-message");
 cookieMsg.innerHTML =
@@ -49,7 +52,6 @@ document
 // ------------- Smooth Scrolling
 btnScrollTo.addEventListener("click", (event) => {
     // Scroll To (Old School Way) 👴🏽
-    // Co-ordinates of section1
     // const s1Coords = section1.getBoundingClientRect();
     // console.log(s1Coords);
     // window.scrollTo({
@@ -62,7 +64,7 @@ btnScrollTo.addEventListener("click", (event) => {
     section1.scrollIntoView({ behavior: "smooth" });
 });
 
-// ------------- Navigation Bar Smooth Scrolls
+// ----------------------------- Navigation Bar Smooth Scrolls -------------------------------
 // document.querySelectorAll(".nav__link").forEach((navLink) => {
 //     navLink.addEventListener("click", (event) => {
 //         // Prevent From Reloading and Navigate to Anchor
@@ -76,7 +78,6 @@ btnScrollTo.addEventListener("click", (event) => {
 //             .scrollIntoView({ behavior: "smooth" });
 //     });
 // });
-
 // Event delegation Method more efficient 🤓
 // 1. Add Event Listener to Common Parent Element
 document.querySelector(".nav__links").addEventListener("click", (event) => {
@@ -96,7 +97,41 @@ document.querySelector(".nav__links").addEventListener("click", (event) => {
     }
 });
 
-// Tabbed Component
+// ------------------------------- NavBar Blur Effect --------------------------------------
+const navBar = document.querySelector(".nav");
+navBar.addEventListener("mouseover", (event) => {
+    // Event Delegation Check
+    if (event.target.classList.contains("nav__link")) {
+        const hoveredLink = event.target;
+        const otherLinks = hoveredLink.closest(".nav");
+    }
+});
+navBar.addEventListener("mouseout", (event) => {});
+
+// ------------------------------- Tabbed Component Section 2 -------------------------------
+// Event Delegation on tabContainer
+tabsContainer.addEventListener("click", (event) => {
+    const activeTab = event.target.closest(".operations__tab");
+
+    // Guard Clause
+    if (!activeTab) return;
+
+    // Set active tab
+    // Removing active from all tabs
+    tabBtn.forEach((tab) => {
+        tab.classList.remove("operations__tab--active");
+    });
+    tabContent.forEach((tab) => {
+        tab.classList.remove("operations__content--active");
+    });
+
+    // Adding on currently active tab
+    activeTab.classList.add("operations__tab--active");
+    // Selecting corresponding content
+    document
+        .querySelector(`.operations__content--${activeTab.dataset.tab}`)
+        .classList.add("operations__content--active");
+});
 
 // -------------------------------------------------------------------------------------
 /*
@@ -110,7 +145,6 @@ console.log(
     document.documentElement.clientWidth,
     document.documentElement.clientHeight
 );
-*/
 const h1 = document.querySelector("h1");
 // Going Down
 console.log(h1.querySelectorAll(".highlight"));
@@ -125,3 +159,4 @@ console.log(h1.parentElement); // Direct Parent Element
 // Sideways
 console.log(h1.previousElementSibling); // Direct Previous Element
 console.log(h1.nextElementSibling); // Direct Next Element
+*/
