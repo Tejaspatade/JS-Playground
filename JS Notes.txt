@@ -277,6 +277,11 @@ Up:
 Sideways:
 ->leftSibling
 
+--------------
+
+Intersection Observer API:
+It is used to track intersections of one target element with some other element or the viewport itself when scrolling. It is way more efficient than listening for scroll events. To use this API, we create an IntersectionObserver() object with the new keyword. We also pass in a callback function and options object into IntersectionObserver(). We then call the observe() method on observer obj created and pass in the target element which we want to observe the intersection for. The options object specifies the element with which we want the intersection of our target to be observed(null for viewport) in the root property. We also pass the threshold at which we want the callback function to be called. The threshold specifies the percentage of target element at which we want the callback to happen. Whenever target element passes the threshold percentage specified, 
+
 -----------------------------------------------------------
 JS Theory, Implementation Details
 -> JS Runtime & JS Engine

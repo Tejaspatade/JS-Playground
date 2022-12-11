@@ -11,6 +11,7 @@ const header = document.querySelector(".header");
 const tabBtn = document.querySelectorAll(".operations__tab");
 const tabContent = document.querySelectorAll(".operations__content");
 const tabsContainer = document.querySelector(".operations__tab-container");
+const navBar = document.querySelector(".nav");
 
 // ------------- Modal window --------------------------------------------------------------
 const openModal = function () {
@@ -98,15 +99,53 @@ document.querySelector(".nav__links").addEventListener("click", (event) => {
 });
 
 // ------------------------------- NavBar Blur Effect --------------------------------------
-const navBar = document.querySelector(".nav");
-navBar.addEventListener("mouseover", (event) => {
+// Callback Function for handling event
+const navLinksOnHover = function (event) {
     // Event Delegation Check
     if (event.target.classList.contains("nav__link")) {
+        // Link Hovered
         const hoveredLink = event.target;
-        const otherLinks = hoveredLink.closest(".nav");
+        // Other Elements on nav bar
+        const otherLinks = hoveredLink
+            .closest(".nav")
+            .querySelectorAll(".nav__link");
+        // Logo
+        const logo = hoveredLink.closest(".nav").querySelector("img");
+
+        // Change Opacity on others
+        otherLinks.forEach((link) => {
+            if (link !== hoveredLink) link.style.opacity = this;
+        });
+        // Logo Opacity Changed
+        logo.style.opacity = this;
     }
+};
+// Passing opacity as an argument by setting this to the opacity
+navBar.addEventListener("mouseover", navLinksOnHover.bind(0.5));
+navBar.addEventListener("mouseout", navLinksOnHover.bind(1));
+
+// ------------------------------- Sticky NavBar Effect --------------------------------------
+// NavBar height
+const navHeight = navBar.getBoundingClientRect().height;
+// Intersection Observer API
+// Callback Function
+const stickyNav = (entries, observer) => {
+    // Destructuring entry
+    const [entry] = entries;
+    console.log(entry);
+
+    // Check for intersection
+    if (!entry.isIntersecting) navBar.classList.add("sticky");
+    else navBar.classList.remove("sticky");
+};
+// Create observer Object
+const headerObserver = new IntersectionObserver(stickyNav, {
+    root: null,
+    threshold: 0,
+    rootMargin: `-${navHeight}px`,
 });
-navBar.addEventListener("mouseout", (event) => {});
+// Observe Target -> Header Section
+headerObserver.observe(header);
 
 // ------------------------------- Tabbed Component Section 2 -------------------------------
 // Event Delegation on tabContainer
@@ -159,4 +198,17 @@ console.log(h1.parentElement); // Direct Parent Element
 // Sideways
 console.log(h1.previousElementSibling); // Direct Previous Element
 console.log(h1.nextElementSibling); // Direct Next Element
+
+// Intersection Observer API
+const callback = function () {
+    console.log("Intersection");
+};
+const options = {
+    root: null,
+    threshold: 0.1,
+};
+// Observer Object initialised
+const observer = new IntersectionObserver(callback, options);
+// Target to be observed
+observer.observe(section1);
 */
