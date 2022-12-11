@@ -12,6 +12,14 @@ const tabBtn = document.querySelectorAll(".operations__tab");
 const tabContent = document.querySelectorAll(".operations__content");
 const tabsContainer = document.querySelector(".operations__tab-container");
 const navBar = document.querySelector(".nav");
+const sections = document.querySelectorAll(".section");
+const slides = document.querySelectorAll(".slide");
+const leftBtn = document.querySelector(".slider__btn--left");
+const rightBtn = document.querySelector(".slider__btn--right");
+const dots = document.querySelector(".dots");
+
+// Global Variables
+let currentSlide = 0;
 
 // ------------- Modal window --------------------------------------------------------------
 const openModal = function () {
@@ -152,7 +160,6 @@ const imgs = document.querySelectorAll(".features__img");
 const lazyLoadImg = (entries, observer) => {
     // Destructuring entry
     const [entry] = entries;
-    console.log(entry);
 
     // Guard Clause
     if (!entry.isIntersecting) return;
@@ -198,7 +205,6 @@ tabsContainer.addEventListener("click", (event) => {
 });
 
 // ------------------------------- Reveal Sections OnScroll -------------------------------------
-const sections = document.querySelectorAll(".section");
 // Callback Function
 const revealSection = function (entries, observer) {
     // Destructuring entry
@@ -224,6 +230,78 @@ sections.forEach((section) => {
 });
 
 // ------------------------------- Slider Section 3--------------------------------------------
+// Organise Slides Functionality
+const goToSlide = (startSlide) => {
+    slides.forEach((slide, i) => {
+        slide.style.transform = `translateX(${(i - startSlide) * 100}%)`;
+    });
+};
+const constructDots = () => {
+    slides.forEach((_, index) => {
+        dots.insertAdjacentHTML(
+            "beforeend",
+            `<button class="dots__dot" data-slide="${index}"></button>`
+        );
+    });
+};
+const setActiveDot = (slideNum) => {
+    // Remove active from other dots
+    dots.querySelectorAll(".dots__dot").forEach((dot) => {
+        dot.classList.remove("dots__dot--active");
+    });
+    // Set clicked dot as active
+    document
+        .querySelector(`.dots__dot[data-slide="${slideNum}"]`)
+        .classList.add("dots__dot--active");
+};
+const prevSlide = () => {
+    // Go to Last slide if already on first slide
+    if (currentSlide === 0) currentSlide = slides.length - 1;
+    else currentSlide--;
+    // Display current slide upfront
+    goToSlide(currentSlide);
+    // Update Dots
+    setActiveDot(currentSlide);
+};
+const nextSlide = () => {
+    // Return back to 0 after reaching last slide
+    if (currentSlide === slides.length - 1) currentSlide = 0;
+    else currentSlide++;
+    // Display current slide upfront
+    goToSlide(currentSlide);
+    // Update Dots
+    setActiveDot(currentSlide);
+};
+const init = () => {
+    // Generate Dots
+    constructDots();
+    // Set all slides in a row
+    goToSlide(0);
+    // Update Dots
+    setActiveDot(currentSlide);
+};
+init();
+// -> Events
+// Go To Previous Slide
+leftBtn.addEventListener("click", prevSlide);
+// Go To Next Slide
+rightBtn.addEventListener("click", nextSlide);
+// Keyboard Arrow Press to move slides
+document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") nextSlide();
+    if (event.key === "ArrowLeft") prevSlide();
+});
+// Dot Click using event delegation
+dots.addEventListener("click", (event) => {
+    // Delegation Check
+    if (event.target.classList.contains("dots__dot")) {
+        // Update Slider
+        goToSlide(event.target.dataset.slide);
+
+        // Active Class
+        setActiveDot(event.target.dataset.slide);
+    }
+});
 
 // ----------------------------------------------------------------------------------------------
 /*
