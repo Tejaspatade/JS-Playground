@@ -37,18 +37,18 @@ document.addEventListener("keydown", function (e) {
 });
 
 // --------------------- Cookie Element Creation -----------------------------------------------
-const cookieMsg = document.createElement("span");
-cookieMsg.classList.add("cookie-message");
-cookieMsg.innerHTML =
-    "We use cookies to analyse who visits our site.<button class='btn btn--close-cookie'>Got it!</button>";
-header.before(cookieMsg);
-cookieMsg.style.backgroundColor = "#37383d";
-// Close Cookie Msg
-document
-    .querySelector(".btn--close-cookie")
-    .addEventListener("click", function () {
-        cookieMsg.remove();
-    });
+// const cookieMsg = document.createElement("span");
+// cookieMsg.classList.add("cookie-message");
+// cookieMsg.innerHTML =
+//     "We use cookies to analyse who visits our site.<button class='btn btn--close-cookie'>Got it!</button>";
+// // header.append(cookieMsg);
+// cookieMsg.style.backgroundColor = "#37383d";
+// // Close Cookie Msg
+// document
+//     .querySelector(".btn--close-cookie")
+//     .addEventListener("click", function () {
+//         cookieMsg.remove();
+//     });
 
 // ------------- Smooth Scrolling
 btnScrollTo.addEventListener("click", (event) => {
@@ -132,7 +132,6 @@ const navHeight = navBar.getBoundingClientRect().height;
 const stickyNav = (entries, observer) => {
     // Destructuring entry
     const [entry] = entries;
-    console.log(entry);
 
     // Check for intersection
     if (!entry.isIntersecting) navBar.classList.add("sticky");
@@ -146,6 +145,32 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 // Observe Target -> Header Section
 headerObserver.observe(header);
+
+// ------------------------------- Lazy Loading Imgs Section 1 -------------------------------
+const imgs = document.querySelectorAll(".features__img");
+// CallBack
+const lazyLoadImg = (entries, observer) => {
+    // Destructuring entry
+    const [entry] = entries;
+    console.log(entry);
+
+    // Guard Clause
+    if (!entry.isIntersecting) return;
+
+    // Replace lightweight img with original img.
+    entry.target.src = entry.target.dataset.src;
+    entry.target.addEventListener("load", () => {
+        entry.target.classList.remove("lazy-img");
+    });
+    observer.observe(entry.target);
+};
+// Observer Object
+const imgObserver = new IntersectionObserver(lazyLoadImg, {
+    root: null,
+    threshold: 0,
+    rootMargin: "200px",
+});
+imgs.forEach((img) => imgObserver.observe(img));
 
 // ------------------------------- Tabbed Component Section 2 -------------------------------
 // Event Delegation on tabContainer
@@ -172,7 +197,35 @@ tabsContainer.addEventListener("click", (event) => {
         .classList.add("operations__content--active");
 });
 
-// -------------------------------------------------------------------------------------
+// ------------------------------- Reveal Sections OnScroll -------------------------------------
+const sections = document.querySelectorAll(".section");
+// Callback Function
+const revealSection = function (entries, observer) {
+    // Destructuring entry
+    const [entry] = entries;
+
+    // Guard Case
+    if (!entry.isIntersecting) return;
+
+    // Showing Hidden Section
+    entry.target.classList.remove("section--hidden");
+
+    // Stop Observing
+    observer.unobserve(entry.target);
+};
+// Intersection Observer for all sections
+const sectionsObserver = new IntersectionObserver(revealSection, {
+    root: null,
+    threshold: 0.15,
+});
+sections.forEach((section) => {
+    sectionsObserver.observe(section);
+    section.classList.add("section--hidden");
+});
+
+// ------------------------------- Slider Section 3--------------------------------------------
+
+// ----------------------------------------------------------------------------------------------
 /*
 Advanced Dom
 Coords for the button clicked
