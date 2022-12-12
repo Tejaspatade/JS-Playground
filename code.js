@@ -982,3 +982,43 @@ console.log(future.getDay());
 console.log(future.getFullYear());
 console.log(future.getTime());
 console.log(future.toISOString());
+
+/*
+Advanced Dom
+Coords for the button clicked
+console.log(event.target.getBoundingClientRect());
+Scroll Distance
+console.log("X/Y", window.pageXOffset, window.pageYOffset);
+ViewPort Height Width
+console.log(
+    document.documentElement.clientWidth,
+    document.documentElement.clientHeight
+);
+const h1 = document.querySelector("h1");
+// Going Down
+console.log(h1.querySelectorAll(".highlight"));
+console.log(h1.childNodes); // Direct Children
+console.log(h1.children); // Direct Child Elements
+
+// Going Up
+console.log(h1.parentNode); // Direct Parent Node
+console.log(h1.parentElement); // Direct Parent Element
+// h1.closest(".header").style.background = "var(--gradient-secondary)";
+
+// Sideways
+console.log(h1.previousElementSibling); // Direct Previous Element
+console.log(h1.nextElementSibling); // Direct Next Element
+
+// Intersection Observer API
+const callback = function () {
+    console.log("Intersection");
+};
+const options = {
+    root: null,
+    threshold: 0.1,
+};
+// Observer Object initialised
+const observer = new IntersectionObserver(callback, options);
+// Target to be observed
+observer.observe(section1);
+*/
