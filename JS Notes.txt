@@ -174,21 +174,6 @@ Add/delete elements:
 ->delete(key): Remove key->value.
 We can populate the map when creating it as well. We need to pass an array of arrays that contains keys and respective values in them as argument to Map(). This is exactly how Object.entries(obj) returns an output therefore making it easy to convert an object to map. We can iterate maps just like arrays using for...of and they return key & values in an array per iteration. We can also use unpacking operator on it to basically revert it back to array structure from before.
 
--------------------------------------------------------
-Object Oriented Programming
-Object is a collection of properties(key:value pairs) and methods(functions as value). It allows us to give a name to each of the values being stored that can be used to access it unlike Arrays where we can access them using only their indices. Functions inside of an object are called as methods. Objects can be used to store similar type of data and manipulations on the data in a single place. Order of properties doesn't matter. 
-
-Objects can also hold functions as properties since they are also a type of value in JS. These functions are called methods. Methods can also be accesssed in the same way.
-
-Accessing Object Properties:
-->Dot operator: Access property value by using the object_name.key syntax. This is followed by parameters in parantheses for methods.
-->Brackets: Access property value by passing in an expression in [] brackets after object_name.
-Note: Accessing non-existent property keys returns undefined. This is followed by parameters in parantheses for methods.
-
-Methods of creating Objects:
-->Factory functions: These are simple functions that are passed arguments which are used to return an object with those arguments as it's values. They basically act like a factory the manufactures objects which have different values. If the key and parameter to function have same name, just the parameter name is sufficient to store that value in the object. The key for any functions can be neglected as well by directly defining the function.
-->Constructor functions: These are functions that take arguments and use the 'this' keyword to define object members and methods. They are usually named in Pascal naming convention. 'this' is a reference to the object currently executing the specific code. When actually creating the new object 'new' keyword is used followed by the Constructor name with arguments passed to it. 'new' creates an empty JS object, sets the 'this' operator to point to this newly created object and returns an object from the constructor function implicitly.
-
 -------------------------------------------------------------
 DOM Manipulation
 Refers to making JS interact with our HTML & CSS code(basically the webpage). 
@@ -423,3 +408,20 @@ Methods:
 -> Date.now(): Timestamp at current time.
 
 Any Sort of operations done with dates like subtraction addition convert the dates to timestamps in miliseconds implicitly by JS engine as part of type coercion.
+
+-----------------------------------------------------------
+Object Oriented Programming
+Object is a collection of properties(key:value pairs) and methods(functions as value). It allows us to give a name to each of the values being stored that can be used to access it unlike Arrays where we can access them using only their indices. Functions inside of an object are called as methods. Objects can be used to store similar type of data and manipulations on the data in a single place. Order of properties doesn't matter. 
+
+Objects can also hold functions as properties since they are also a type of value in JS. These functions are called methods. Methods can also be accesssed in the same way.
+
+Accessing Object Properties:
+->Dot operator: Access property value by using the object_name.key syntax. This is followed by parameters in parantheses for methods.
+->Brackets: Access property value by passing in an expression in [] brackets after object_name.
+Note: Accessing non-existent property keys returns undefined. This is followed by parameters in parantheses for methods.
+
+Objects in JS delegate their behaviour into prototypes which represent classes from traditional OOP. Thus any object linked to a prototype has access to & inherits all methods & properties that protoype contains. This is called as protypal inheritance. This is somewhat like how
+
+Methods of creating Objects:
+->Factory functions: These are simple functions that are passed arguments which are used to return an object with those arguments as it's values. They basically act like a factory the manufactures objects which have different values. If the key and parameter to function have same name, just the parameter name is sufficient to store that value in the object. The key for any functions can be neglected as well by directly defining the function.
+->Constructor functions: These are functions that take arguments and use the 'this' keyword to define object members and methods. They are usually named in Pascal naming convention. 'this' is a reference to the object currently executing the specific code. When actually creating the new object 'new' keyword is used followed by the Constructor name with arguments passed to it. 'new' creates an empty JS object, sets the 'this' operator to point to this newly created object and returns an object from the constructor function implicitly.
