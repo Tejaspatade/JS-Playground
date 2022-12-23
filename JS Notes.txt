@@ -425,6 +425,18 @@ Objects in JS delegate their behaviour into prototypes which represent classes f
 Methods of creating Objects:
 ->Factory functions: These are simple functions that are passed arguments which are used to return an object with those arguments as it's values. They basically act like a factory that manufactures objects which have different values. If the key and parameter to function have same name, just the parameter name is sufficient to store that value in the object. The key for any functions can be neglected as well by directly defining the function.
 ->Constructor functions: These are functions that take arguments and use the 'this' keyword to define object members and methods. They are usually named in Pascal naming convention. 'this' is a reference to the object currently executing the specific code. When actually creating the new object 'new' keyword is used followed by the Constructor name with arguments passed to it. 'new' creates an empty JS object, sets the 'this' operator to point to this newly created object and returns an object from the constructor function implicitly. We use the prototype property of constructor function to define any methods we want all objects created using our constructor to inherit. Any constructor's protoype property is what is used as the protoype for any objects created using this cntr but its not the protype for itself.
-Note: Such methods aren't a part of the objects this constructor creates, they are just accessible from 
+Note: Such methods aren't a part of the objects this constructor creates, they are just accessible from protoype of constructor function. This can be checked using the __proto__ private property on objects instantiated using constructor.
 
 The link between objects and their prototypes they inherited from their Constructor.protoype is called as prototype chain.
+
+--------------
+
+Classes(ES6):
+Classes aren't technically a feature of JS but are simple syntactic sugar that make use of constructor functions and protoypes under the hood. They are created using a class keyword. This means classes are just a special type of functions in JS. It has a constructor() method. To initialise any new instance created. Whenever an object is instantiated using new kw, this constructor() is invoked that returns a new obj of the class type. Any methods defined in class definiton are stored in the class protoype which is inherited by any object instance of the class.
+
+Classes aren't Hoisted. They're first-class citizens i.e. can be passed as arguments and returned from functions. Classes are always executed in strict mode.
+
+--------------
+
+Setters & Getters:
+Instance methods used to get & set a property but look like simple properties. Define with set and get kws, then just use them on objects like properrties rather than invoking them or passing them any arguments. 
