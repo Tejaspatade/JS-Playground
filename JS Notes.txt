@@ -426,6 +426,7 @@ Methods of creating Objects:
 ->Factory functions: These are simple functions that are passed arguments which are used to return an object with those arguments as it's values. They basically act like a factory that manufactures objects which have different values. If the key and parameter to function have same name, just the parameter name is sufficient to store that value in the object. The key for any functions can be neglected as well by directly defining the function.
 ->Constructor functions: These are functions that take arguments and use the 'this' keyword to define object members and methods. They are usually named in Pascal naming convention. 'this' is a reference to the object currently executing the specific code. When actually creating the new object 'new' keyword is used followed by the Constructor name with arguments passed to it. 'new' creates an empty JS object, sets the 'this' operator to point to this newly created object and returns an object from the constructor function implicitly. We use the prototype property of constructor function to define any methods we want all objects created using our constructor to inherit. Any constructor's protoype property is what is used as the protoype for any objects created using this cntr but its not the protype for itself.
 Note: Such methods aren't a part of the objects this constructor creates, they are just accessible from protoype of constructor function. This can be checked using the __proto__ private property on objects instantiated using constructor.
+->Object.create(object): Use an object as the protoype for a new object. Returns an empty object with the object passed in as the protoype for this empty object.
 
 The link between objects and their prototypes they inherited from their Constructor.protoype is called as prototype chain.
 
@@ -439,4 +440,23 @@ Classes aren't Hoisted. They're first-class citizens i.e. can be passed as argum
 --------------
 
 Setters & Getters:
-Instance methods used to get & set a property but look like simple properties. Define with set and get kws, then just use them on objects like properrties rather than invoking them or passing them any arguments. 
+Instance methods used to get & set a property but look like simple properties. Define with set and get kws, then just use them on objects like properties rather than invoking them or passing them any arguments. Assigning a value to the method as if it's a property invokes the setter and passes the value to be assigned as an argument. Trying to access the value invokes the getter method likewise.
+
+--------------
+
+Static Methods:
+These are methods bound to the class itself and aren't accessible to objects instatntiated from it. They are usually used to implement utility functions.
+
+--------------
+
+Inheritance:
+A class can inherit all the functionality(properties & methods) of another class just like a child does from parent & this phenomenon is called inheritance. Using the contructors, this is done using the Object.create on the prototype of child class and passsing parent class' prototype as argument. This links the two classes and child class objects can acces all parent class functionality as well. With ES6 classes, you just use the extends kw on child class followed by parent class while defining the class.
+
+-----------------------------------------------------------
+Asynchronous JS:
+Coordinating behaviour of program over period of time. Any asynchronous code is executed after a task running in the background completes executing. But this code doesn't block other code from being executed in the main thread. In other words, execution doesn't wait for any asynchronous code to finish executing, it continues executing next lines of code.
+
+--------------
+
+AJAX:
+Asynchronous JavaScript and XML. It enables interacting with remote web servers asynchronously. It can fetch/request data from web servers dynamically with AJAX calls. Although the name includes XML which is a data format, but its not used nowadays & is replaced by JSON format of data.
