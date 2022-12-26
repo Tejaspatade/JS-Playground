@@ -459,4 +459,31 @@ Coordinating behaviour of program over period of time. Any asynchronous code is 
 --------------
 
 AJAX:
-Asynchronous JavaScript and XML. It enables interacting with remote web servers asynchronously. It can fetch/request data from web servers dynamically with AJAX calls. Although the name includes XML which is a data format, but its not used nowadays & is replaced by JSON format of data.
+Asynchronous JavaScript and XML. It enables interacting with remote web servers asynchronously. It can fetch/request data from web servers dynamically with AJAX calls. Although the name includes XML which is a data format, but its not used nowadays & is replaced by JSON format of data. An API endpoint is the URL used to access data from API.
+
+--------------
+
+Callback Hell:
+Nesting AJAX calls to APIs to execute them asynchronously but in an order leads to callback hell. Code becomes messy and difficult to maintain.
+
+--------------
+
+Fetch API:
+Fetch API is an ES6 feature introduced to improve making AJAX calls to remote APIs to fetch/get data. It uses the fetch() method with the URL as an argument to fetch data from the API and returns a promise. 
+
+--------------
+
+Promise:
+A promise is an object used as placeholder for the result of an asynchronous operation. Its like a container for an asynchronously fetched value. Using promises eliminates the need for callbacks and event listeners for handling when an AJAX call loads data successfully and we can also chain promises to escape callback hell. 
+
+Promise Lifecycle
+1.Pending: Before the future value is retrieved.
+2.Settled: Asynchronous task finished.
+3.Fulfilled: Value is successfully available.
+4.Rejected: Error occured.
+We can handle promises based upon what stage of life cycle they are in. Promise is settled only once and the state is unchangeable after that.
+
+->then(callbackFunction(response)): Callback to execute when promise is fulfilled. It passes the Response object as argument to callback.
+->response.json(): returns another promise that has the actual data needed. Therefore, we have to do another .then() call on this promise to get the actual data.
+
+Handling Rejected Promises:
