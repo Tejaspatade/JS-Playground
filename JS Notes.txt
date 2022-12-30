@@ -483,7 +483,11 @@ Promise Lifecycle
 4.Rejected: Error occured.
 We can handle promises based upon what stage of life cycle they are in. Promise is settled only once and the state is unchangeable after that.
 
-->then(callbackFunction(response)): Callback to execute when promise is fulfilled. It passes the Response object as argument to callback.
+->then(callbackFunction(response), rejected()): Callback to execute when promise is fulfilled. It passes the Response object as argument to callback. It can also take another callback thats invoked if the promise is rejected/fails.
 ->response.json(): returns another promise that has the actual data needed. Therefore, we have to do another .then() call on this promise to get the actual data.
 
 Handling Rejected Promises:
+Promises are rejected if internet connection wasn't available when making the fetch request. This can be handle using catch() at end of promise chain.
+->catch(errorCallback(error)): Errors propagate down the chain of promises until they are caught otherwise show up on console. We can add a catch() at end of a promise chain so as to catch any error that happened at any point in the chain. The error message is passed as an argument to callback we specify in catch().
+
+Other errors like unsuccessful fetch from an API dont result in promise getting rejected. These have to be handled manually. This is done by manually throwing an error using throw new Error(msg).

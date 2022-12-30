@@ -57,22 +57,53 @@ function render(country, className = "") {
     countriesContainer.style.opacity = 1;
 }
 
+function getJSON(url, errMsg) {
+    return fetch(url).then((response) => {
+        if (!response.ok) throw new Error(errMsg);
+        return response.json();
+    });
+}
+
 function getCountry(country) {
-    fetch(`https://restcountries.com/v2/name/${country}`)
-        .then((response) => response.json())
+    getJSON(`https://restcountries.com/v2/name/${country}`, "Country Not Found")
         .then(([data]) => {
             render(data);
             console.log(data);
 
             // get neighbour
             const neigh = data.borders[0];
-            if (!neigh) return;
-            return fetch(`https://restcountries.com/v2/alpha/${neigh}`);
+            if (!neigh) throw new Error("No Neighbour for Country.");
+            return getJSON(
+                `https://restcountries.com/v2/alpha/${neigh}`,
+                "Country Not Found"
+            );
         })
-        .then((response) => response.json())
-        .then((neigh) => render(neigh, "neighbour"));
+        .then((neigh) => render(neigh, "neighbour"))
+        .catch((error) => console.log(`Error ${error}`));
 }
 
-btn.addEventListener("click", () => {
-    getCountry("germany");
-});
+// CC#1
+function whereAmI(lat, lng) {
+    fetch(
+        `https://geocode.xyz/${lat},${lng}?geoit=json&auth=226258793177075200710x27966 `
+    )
+        .then((response) => {
+            if (!response.ok)
+                throw new Error(
+                    "Too Many Requests to Geocode API",
+                    response.status
+                );
+            return response.json();
+        })
+        .then((data) =>
+            console.log(`You are in ${data.region}, ${data.country}`)
+        )
+        .catch((err) => console.error(err.message));
+}
+whereAmI(52.508, 13.381);
+whereAmI(19.037, 72.873);
+whereAmI(-33.933, 18.474);
+
+// btn.addEventListener("click", () => {
+//     getCountry("germany");
+// });
