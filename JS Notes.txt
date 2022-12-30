@@ -502,6 +502,7 @@ Methods:
 Promise.resolve(val): Returns resolved promise with passed in value.
 Promise.reject(val): Returns rejected promise with passed in value.
 Promise.all([promises]): Waits for all promises to be fullfilled. Returns array of values from fulfilled promises. If any of the promise is rejected it throws an error. These promises are run parallely.
+Promise.race([promises]): Returns value of first promise that executes first.
 
 --------------
 
@@ -510,3 +511,13 @@ Using the async kw before any function makes it an asynchronous function implyin
 
 Inside this async function, we can use await kw on any async function that returns the result of the promise. The await kw stops the code execution of the async function until the promise is resolved and returns the response value. It is just syntactic sugar to imitate synchronous code rather than using then(). In order to handle errors like rejected promises, we have to use try catch block. Another way to avoid having to use a try catch block is to directly return the response
 Note: await can be used only inside async functions.
+
+-----------------------------------------------------------
+Development Process
+JS is broken down into modules and even 3rd party packages -> These modules go through the build phase before being deployed -> Firstly, they are bundled together and compressed -> Secondly, they are transpiled and polyfiled meaning reverted back to ES5 syntax to support older browsers.
+
+Module:ES6
+Reusable piece of code, encapsulates implementation details. We can use import export kw for this. Any value we export is called Public API and values imported from other modules are called dependencies. Modules are used to isolate components or abstract out low level details. We can reuse code as well as organize it.
+ES6 module variables are scoped to module itself meaning nothing outside the module can directly access a variable from it before importing it properly. Modules are executed in strict mode by default. this is undefined rather than pointing to window obj. Imports are hoisted. Any exporting modules are executed before the modules where they are getting imported can executed to know all dependencies beforehand.
+
+Exports can be named exports or default exports. Named exports are used to export multiple things from a module. Default exports are used to export a singular thing from a module. Exports aren't simple copies of values from a module to another they are actual live connections like pointer. Any changes in exported value are reflected wherever this value gets imported at all times.
