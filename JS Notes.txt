@@ -491,3 +491,22 @@ Promises are rejected if internet connection wasn't available when making the fe
 ->catch(errorCallback(error)): Errors propagate down the chain of promises until they are caught otherwise show up on console. We can add a catch() at end of a promise chain so as to catch any error that happened at any point in the chain. The error message is passed as an argument to callback we specify in catch().
 
 Other errors like unsuccessful fetch from an API dont result in promise getting rejected. These have to be handled manually. This is done by manually throwing an error using throw new Error(msg).
+
+Promises can be created by using the class Promise as well, it takes a callback function with two arguments, a resolve function thats to be invoked when we want the promise to be resolved successfully and a reject method that should be invoked when the promise is to be rejected. We can use this process of creating user defined promises to make other asynchronous tasks such as setTimeout funcs and geolocation API to return a promise and this is called promisifying.
+
+The asynchronous tasks can concurrently execute wihout obstructing the call stack because they aren't executed in the call stack. They are actually executed in the Web API environments. Any callbacks in the callback queue are executed one by one be tranferring them into the call stack if it's empty by the event loop. Every time a callback from queue is transferred onto call stack for execution its said to be an event loop tick.
+
+Any callbacks emerging from an eventlistener on the fetch promises is called a microtask and has a special queue to store their execution order called microtask queue. This queue has priority over callback queue, meaning any and all callbacks from callback queue have to wait for all microtasks to finish executing from microtask queue. This is also done by the event loop.
+
+Methods:
+Promise.resolve(val): Returns resolved promise with passed in value.
+Promise.reject(val): Returns rejected promise with passed in value.
+Promise.all([promises]): Waits for all promises to be fullfilled. Returns array of values from fulfilled promises. If any of the promise is rejected it throws an error. These promises are run parallely.
+
+--------------
+
+Async Await:
+Using the async kw before any function makes it an asynchronous function implying that it executes asynchronously in the background and not in the call stack. Any value that we try to return from this function is returned in the form of a fulfilled promise.
+
+Inside this async function, we can use await kw on any async function that returns the result of the promise. The await kw stops the code execution of the async function until the promise is resolved and returns the response value. It is just syntactic sugar to imitate synchronous code rather than using then(). In order to handle errors like rejected promises, we have to use try catch block. Another way to avoid having to use a try catch block is to directly return the response
+Note: await can be used only inside async functions.

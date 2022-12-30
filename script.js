@@ -34,7 +34,7 @@ const getCountry = function (country) {
 };
 
 getCountry("germany");
-*/
+
 
 // Modern ES6 Way
 function render(country, className = "") {
@@ -107,3 +107,71 @@ whereAmI(-33.933, 18.474);
 // btn.addEventListener("click", () => {
 //     getCountry("germany");
 // });
+
+
+
+const seconds = 2;
+wait(seconds).then(() => {
+    console.log(`Waited for ${seconds} seconds.`);
+});
+
+
+// Promisifying setTimeout function
+const wait = function (secs) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, secs * 1000);
+    });
+};
+
+const imgContainer = document.querySelector(".images");
+function createImage(imgPath) {
+    return new Promise((resolve, reject) => {
+        const img = document.createElement("img");
+        img.src = imgPath;
+        img.addEventListener("load", function () {
+            imgContainer.append(img);
+            resolve(img);
+        });
+        img.addEventListener("error", function (event) {
+            reject(new Error("Image nor Found."));
+        });
+    });
+}
+
+createImage("img/img1.jpg")
+    .then((img) => {
+        console.log("image loaded");
+        return wait(2);
+    })
+    .catch((err) => console.error(err));
+
+function render(country, className = "") {
+    const markup = `
+    <article class="country ${className}">
+      <img class="country__img" src="${country.flag}" />
+      <div class="country__data">
+        <h3 class="country__name">${country.name}</h3>
+        <h4 class="country__region">${country.region}</h4>
+        <p class="country__row"><span>👫</span>${(
+            +country.population / 1000000
+        ).toFixed(1)}M people</p>
+        <p class="country__row"><span>🗣️</span>${country.languages[0].name}</p>
+        <p class="country__row"><span>💰</span>${country.currencies[0].name}</p>
+      </div>
+    </article>
+`;
+
+    countriesContainer.insertAdjacentHTML("beforeend", markup);
+    countriesContainer.style.opacity = 1;
+}
+const whereAmI = async function (country) {
+    const res = await fetch(`https://restcountries.com/v2/name/${country}`);
+    // console.log(res);
+
+    const [obj] = await res.json();
+    console.log(obj);
+    render(obj);
+};
+whereAmI("germany");
+console.log("Hello");
+*/
